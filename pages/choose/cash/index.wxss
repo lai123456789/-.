@@ -1,0 +1,10 @@
+.img {
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.wxtb {
+    height: 48rpx;
+    width: 48rpx;
+    margin-right: 14rpx;
+}

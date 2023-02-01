@@ -1,0 +1,94 @@
+<view class="my_index">
+	<view class="my_info">
+		<block wx:if="{{isPhoneYes}}">
+			<image style="width:100rpx;height:100rpx;border-radius:100rpx;" src="{{head_portrait}}"></image>
+			<view class="ml20 f-c-s" wx:if="{{!authorization}}" bindtap="lookCode">
+				<view class="c3 wei8 f34">{{nick_name}}</view>
+				<view class="c9 wei4 f24">用户ID：{{account_n}}</view>
+				<view class="c9 wei4 f24">查看会员码</view>
+			</view>
+			<view class="ml20 f-c" wx:else>
+				<view class="c3 wei8 f34" bindtap="getUserProfile">马上登录</view>
+			</view>
+		</block>
+		<button class="clearbtn c3 wei8 f34 mr30" style="margin-left: -225rpx;" open-type="getPhoneNumber" bindgetphonenumber="getphonenumber"
+			wx:else>
+			授权手机号
+		</button>
+	</view>
+	<view style="margin-top:40rpx;position: relative;height: 256rpx;width: 695.5rpx;">
+		<image mode="widthFix" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707210036ILKO'}}"></image>
+		<view class="xfj">{{currency}} </view>
+		<image bindtap="functionUpdate" class="ckmx" style="width:142rpx;height:45rpx" mode="widthFix"
+			src="/static/Group648.png"></image>
+	</view>
+	<!-- 收藏 -->
+	<view class="f-c mt40 pb40">
+		<image bindtap="collection" style="width:120rpx;height:48rpx;margin-right: 105rpx;" src="/static/Group175.png">
+		</image>
+		<image style="height: 54rpx; width:1rpx;" src="/static/Line8.png"></image>
+		<image bindtap="cardVoucher" style="width:120rpx;height:48rpx;margin-left: 105rpx;" src="/static/Group171.png">
+		</image>
+	</view>
+
+</view>
+<view class="lxwm" style="  border-top: none;">
+	<view class="f32 f-y-c" style="height: 96rpx;padding-left: 30rpx;" bindtap="aboutUs">
+		<image src="/static/gywm.png"></image>
+		<view class="c3 f32 wei4 ml30" style="width: 550rpx;">关于我们</view>
+		<image src="/static/xiangyou.png"></image>
+	</view>
+	<view class="f32 f-y-c" style="height: 96rpx;padding-left: 30rpx;" bindtap="contactUs">
+		<image src="/static/lxwm.png"></image>
+		<view class="c3 f32 wei4 ml30" style="width: 550rpx;">联系我们</view>
+		<image style="justify-self: end;" src="/static/xiangyou.png"></image>
+	</view>
+</view>
+<view class="lxwm">
+	<view class="f32 f-y-c" style="height: 96rpx;padding-left: 30rpx;" bindtap="merchantlogin">
+		<image src="/static/sjddl.png"></image>
+		<view class="c3 f32 wei4 ml30" style="width: 550rpx;">商家端登录</view>
+		<image src="/static/xiangyou.png"></image>
+	</view>
+	<view class="f32 f-y-c" style="height: 96rpx;padding-left: 30rpx;" bindtap="tenants">
+        <image src="/static/sjrz.png"></image>
+        <view class="c3 f32 wei4 ml30" style="width: 550rpx;">商家入驻</view>
+        <image style="justify-self: end;" src="/static/xiangyou.png"></image>
+    </view>
+    <!-- <view class="f32 f-y-c" style="height: 96rpx;padding-left: 30rpx;" bindtap="recruit">
+        <image src="/static/zmdt.png"></image>
+        <view class="c3 f32 wei4 ml30" style="width: 550rpx;">招募地推</view>
+        <image style="justify-self: end;" src="/static/xiangyou.png"></image>
+    </view> -->
+	<view class="f32 f-y-c" style="height: 96rpx;padding-left: 30rpx;" bindtap="_clickScan">
+        <image src="/static/sjrz.png"></image>
+        <view class="c3 f32 wei4 ml30" style="width: 550rpx;">扫码点餐</view>
+        <image style="justify-self: end;" src="/static/xiangyou.png"></image>
+    </view>
+</view>
+<view>
+	<view class="wntj">为你推荐</view>
+	<waterfallFlow leftData="{{leftArr}}" rightData="{{rightArr}}" middleGap='{{ middleGap }}' bind:clickDom='test'
+		longitude="{{longitude}}">
+	</waterfallFlow>
+</view>
+<view class="gzgzh" hidden="{{closeSwitch}}">
+	<view style="position: relative;">
+		<image mode="widthFix" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205557LFEI'}}"></image>
+		<image mode="widthFix" bindtap="focusOn" class="qgz" src="/static/Group256.png"></image>
+		<image mode="widthFix" class="close_btn" bindtap="onClose" src="/static/Group255.png"></image>
+	</view>
+</view>
+<view style="position: relative">
+	<van-popup show="{{showPopup}}"
+		custom-style="background: transparent; overflow: hidden">
+		<image bindtap="showPopup"
+			style="position: absolute; z-index: 100; width: 37rpx; height: 37rpx; right: 0rpx; top: 136rpx;"
+			mode="widthFix" src="/static/xfj_close.png"></image>
+		<view style="text-align: center; margin-top: 216rpx;">
+			<view style="width: 600rpx; height: 660rpx;" class="flex items-center justify-center bf">
+				<canvas style="width: 362rpx; height: 362rpx;" canvas-id="myQrcodeVIP"></canvas>
+			</view>
+		</view>
+	</van-popup>
+</view>

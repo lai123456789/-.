@@ -1,0 +1,5 @@
+<view class="contact_us_index">
+    <image class="mdh" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205859ICVY'}}"></image>
+    <button class="f-c-c f36 wei4 zxkf" open-type="contact"  style="width:590rpx;">在线客服</button>
+    <image bindtap="lxdh" class="lxdh" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205826SFZG'}}"></image>
+</view>

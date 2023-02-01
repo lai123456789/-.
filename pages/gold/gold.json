@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "waterfallFlow": "/component/waterfallFlow/waterfallFlow",
+    "custom-tab-bar": "/component/custom-tab-bar/index",
+	"van-tab": "/common/vant/tab/index",
+	"van-tabs": "/common/vant/tabs/index",
+	"van-empty": "/common/vant/empty/index"
+  },
+  "navigationBarTitleText": "消费金"
+}

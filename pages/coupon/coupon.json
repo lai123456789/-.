@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-empty": "/common/vant/empty/index",
+    "waterfallFlow": "/component/waterfallFlow/waterfallFlow",
+    "my_dropdown": "/component/my_dropdown/my_dropdown"
+  },
+  "navigationBarTitleText": "优惠券"
+}

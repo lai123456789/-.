@@ -1,0 +1,55 @@
+<van-popup show="{{ foodCartShow }}" position="bottom" close-on-click-overlay bind:close="onClickfoodCartShow"
+  custom-style="padding-bottom: 100rpx;" round z-index="99" overlay-style="background-color: rgba(64, 68, 71, 0.5);">
+  <view class="food-cart-white-bg-view" catchtap="preventTouchMove">
+    <view wx:if="{{cart_food_array.length <= 0}}" class="food-cart-scroll-view">
+      <van-empty description="空空如也~" />
+    </view>
+	<block wx:else>
+		<view class="f-x-bt p03 mb10 mt30" >
+			<text class="c3 f30">已选商品</text>
+			<view class="f-c" catchtap="onClickClearCar">
+				<image src="/static/shanchu.png" style="width: 34rpx;height: 34rpx;"></image>
+				<text class="f22 c9">清空</text>
+			</view>
+		</view>
+		<scroll-view class="food-cart-scroll-view" scroll-y="true">
+		  <view style="height: 656rpx; overflow: auto;">
+			  <view class="food-cart-tab" wx:for="{{cart_food_array}}" wx:key="index">
+				<view class="food-cart-cell-bg-view">
+				  <img-loader img-url="{{item.link_identify}}" custom-class="food-cart-cell-image"></img-loader>
+				  <view class="food-cart-cell-info-bg">
+					<view class="food-cart-name-taste-bg justify-between">
+					  <view class="food-cart-name line-1" style="width: 400rpx;">{{item.food_name}}</view>
+					</view>
+					<view class="row-center p-rela mt10" wx:if="{{item.consumer_amount != '0.00'}}">
+								<image src="/static/xiaofeiquanBg.png" style="width: 94rpx;height: 38rpx;"></image>
+								<text class="f20 p-abso wei" style="color: #492D29; left: 6rpx;">￥{{item.consumer_amount}}</text>
+								<image src="/static/xiaofeiquan.png" style="width: 128rpx;height: 38rpx;margin-left: -8rpx;"></image>
+					</view>
+					<view class="food-cart-price-bg">
+					  <view class="food-cart-price-way-bg f-y-c">
+						<view class="food-cart-preferential-price active-color">￥{{item.total_amount}}</view>
+						<view class="food-cart-preferential-price row-center" wx:if="{{hPriceSwitch && item.h_total_amount * 1 != item.total_amount * 1}}">
+						  <image src="/images/icon_h_price.png" class="hprice-image"></image>
+						 <text>￥{{item.h_total_amount}}</text>
+						</view>
+						<text class="f24 c9 ml5">（{{item.spec_value_name}})</text>
+						<!-- <view class="food-cart-get-way active-color">{{item.menu_catalog_name}}</view> -->
+					  </view>
+					  <view class="food-cart-num-bg">
+						<!-- <view class="food-cary-reduce" bindtap="onClickReduce" data-index="{{index}}">-</view> -->
+						<image src="/static/jian.png" bindtap="onClickReduce" data-index="{{index}}" style="width: 50rpx;height: 50rpx;"></image>
+						<view class="food-cary-num">{{item.food_count}}</view>
+						<!-- <view class="food-cary-reduce" bindtap="onClickIncrease" data-index="{{index}}">+</view> -->
+						<image src="/static/jia.png" bindtap="onClickIncrease" data-index="{{index}}" style="width: 50rpx;height: 50rpx;"></image>
+					  </view>
+					</view>
+				  </view>
+				</view>
+				<view class="food-cart-cell-line"></view>
+			  </view>
+		  </view>
+		</scroll-view>
+	</block>
+  </view>
+</van-popup>

@@ -1,0 +1,43 @@
+<view class="search_box search_card {{isFixedTop?'fixed':''}}">
+    <view class="searchbox_input">
+        <!-- <text class="iconfont iconsearch fdj"></text> -->
+        <image class="fdj" src="/static/Group291.png"></image>
+        <input style="width: 520rpx;height: 68rpx;" focus='true' type="text" placeholder="找吃喝玩乐~" placeholder-style="font-size:24rpx;color:#999;" value="{{keywords}}" bindconfirm="confirm" bindinput="minput" />
+        <image wx:if="{{keywords}}" class="clear" bindtouchend="clearKey" src="/static/clear.png"></image>
+
+    </view>
+    <view bindtap="confirm" class="f32 c3 ml30 wei5">搜索</view>
+</view>
+<view class="search_card" wx:if="{{isFixedTop}}"></view>
+<view class="search_history" hidden="{{isSearch}}">
+    <view style="background-color: #fff; padding: 30rpx;">
+        <view class="history_box">
+            <view class="wei c3 f36">搜索历史</view>
+            <image bindtap="clearHistory" style="width: 44rpx;height: 44rpx;" src="/static/shanchu.png"></image>
+        </view>
+        <view class="history_list">
+            <view class="history_item c9 f28" wx:for="{{history}}" wx:key="*this" bindtap="setKey" data-value="{{item}}">{{item}}</view>
+        </view>
+    </view>
+    <!-- <view style="background-color: #fff; padding: 30rpx;">
+        <view class="history_box">
+            <view class="wei c3 f36">热门搜索</view>
+        </view>
+        <view class="history_list">
+            <view class="history_item c9 f28" wx:for="{{topSearch}}" wx:key="*this" bindtap="setKey" data-value="{{item}}">{{item}}</view>
+        </view>
+    </view> -->
+</view>
+<view hidden="{{!isSearch}}">
+    <view class="card {{isFixedTop?'fixed':''}}" style="top: 88rpx;" id="navbar">
+        <my_dropdown id="my_dropdown" selectionList="{{selectionList}}" foodItem="{{foodItem}}" foodList="{{foodList}}" bindshowmasklayer="showMaskLayer" bindgetdistancechange="_getDistance" bindgetpercost="_getPerCost" bindgetsortdata="_getsortdata" bindgetfooddata="_getFoodData" fixedHeight='{{fixedHeight}}' bindtap="scrollTo"></my_dropdown>
+    </view>
+    <view class="card" wx:if="{{isFixedTop}}"></view>
+    <view class="page_1">
+        <waterfallFlow id="waterfallFlow" leftData="{{leftArr}}" rightData="{{rightArr}}" middleGap="{{ middleGap }}" bind:clickDom='test' longitude="{{longitude}}">
+        </waterfallFlow>
+        <van-empty wx:if="{{leftArr.length==0}}" description="空空如也~" />
+    </view>
+    <view class="zzc" hidden="{{zzc_hidden}}" bindtap="closeDropdown">
+    </view>
+</view>

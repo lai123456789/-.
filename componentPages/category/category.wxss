@@ -1,0 +1,11 @@
+.cates_banner {
+  padding: 20rpx 30rpx;
+  height: 270rpx;
+}
+/* .swiper_box {
+  padding: 0 30rpx;
+  height: 270rpx;
+} */
+.page_1 {
+  min-height: 100vh;
+}

@@ -1,0 +1,6 @@
+{
+	"usingComponents": {
+		"waterfallFlow": "/component/waterfallFlow/waterfallFlow"
+	},
+	"navigationBarTitleText": "代金券核销详情"
+}

@@ -1,0 +1,75 @@
+@import "/common/main.wxss";
+
+.navigation_bar {
+  position: relative;
+}
+
+.navigation_bar .bci {
+  /* height: 428rpx; */
+  /* width: 100%; */
+  position: absolute;
+  z-index: -1;
+}
+
+.bgc-fe2544 {
+  background-color: #fe2544;
+}
+
+.menu_box {
+  /* position: fixed; */
+  color: #fff;
+  font-size: 32rpx;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 26rpx;
+  z-index: 2;
+  width: 100vw;
+}
+
+.menu_box image {
+  width: 40rpx;
+  margin-right: 5rpx;
+}
+
+.snfixed {
+  background-color: #fff;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  width: 100%;
+}
+
+.fdj {
+  position: absolute;
+  width: 40rpx;
+  height: 40rpx;
+  /* top: 20rpx; */
+  left: 15rpx;
+}
+
+.sm {
+  width: 44rpx;
+  position: absolute;
+  left: 330rpx;
+  top: 8rpx;
+  font-size: 44rpx;
+  z-index: 2;
+}
+
+.search_input {
+	/* flex: 1; */
+	width: 324rpx;
+	margin: 0 40rpx;
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.search_input input {
+	height: 60rpx;
+	border-radius: 40rpx;
+	color: #999999;
+	padding-left: 54rpx;
+	font-size: 30rpx;
+}
+

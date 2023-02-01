@@ -1,0 +1,44 @@
+.about_us_index {
+  position: relative;
+  background-color: #f8f8f8;
+}
+.navigation-container {
+  color: #fff;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+}
+.navigation-bar {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.navigation-buttons {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+  background-color: transparent;
+}
+.navigation-title {
+  position: absolute;
+  left: 104px;
+  right: 104px;
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.about_us_content {
+  width: 690rpx;
+  height: 1006rpx;
+  position: absolute;
+  top: 240rpx;
+  left: 30rpx;
+}

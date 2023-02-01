@@ -1,0 +1,56 @@
+<view class="my_dropdown">
+	 <!-- style="padding: {{is ? '0 48rpx 0 20rpx' : ''}}" -->
+    <view class="my_dropdown_item" wx:for="{{selectionList}}" wx:key="index" bindtap="showPopup" data-index="{{item.selectIndex}}">
+        <view class="my_dropdown_item_title {{item.selectIndex==showIndex?'active':''}}">{{item.name}}</view>
+    </view>
+    <view wx:if="{{ show }}" style="position: absolute;margin-top:40px;background-color: #fff;">
+        <!-- 附近 -->
+        <view wx:if="{{showIndex==0}}" style="width: 100vw">
+            <view wx:for="{{distance}}" wx:key="text" wx:for-index="index1" wx:for-item="item1">
+                <view class="my_dropdown_cell" catchtap="getDistance" data-value="{{item1.value}}" data-text="{{item1.text}}" data-index="{{index1}}">
+                    <view class=" my_dropdown_cell_item {{distanceIndex==index1?'active':''}}">{{item1.text}}</view>
+                </view>
+            </view>
+        </view>
+        <!-- 美食 -->
+        <!-- <view wx:if="{{showIndex==1}}">
+            <view style="display: flex;width: 100vw">
+                <scroll-view scroll-y style="height:500px" class="left_menv">
+                    <view class="menu_item {{index===foodIndex?'active':''}}" wx:for="{{foodList}}" wx:key="name" bindtap="foodItemTap" data-index="{{index}}">
+                        {{item.name}}
+                    </view>
+                </scroll-view>
+                <scroll-view scroll-top="{{scrollTop}}" scroll-y style="height:500px" class="right_content">
+                    <view class="area_group {{index1===foodItemIndex?'active':''}}" wx:for="{{foodItem}}" wx:key="car_name" wx:for-index="index1" catchtap="getFoodData" data-index="{{index1}}" data-data="{{item1}}" wx:for-item="item1">
+                        {{item1.name}}
+                    </view>
+                </scroll-view>
+            </view>
+        </view> -->
+        <!-- 智能排序 -->
+        <view wx:if="{{showIndex==2}}" wx:for="{{IntelligentSortArr}}" wx:key="num" style="width: 100vw">
+            <view class="my_dropdown_cell" catchtap="getIntelligentSortData" data-data="{{item}}" data-index="{{index}}">
+                <view class="my_dropdown_cell_item {{index==IntelligentIndex?'active':''}}">{{item.text}}</view>
+            </view>
+        </view>
+        <!-- 筛选 -->
+        <view wx:if="{{showIndex==3}}">
+            <view style="display: flex;flex-wrap: wrap;padding-left:60rpx;padding-top: 30rpx;">
+                <view class="c3 f32 wei" style="width: 100%;">人均价格</view>
+                <view class="price_tag {{item.index===priceIndex?'active':''}}" data-data="{{item}}" catchtap="checkPriceTag" wx:for="{{priceTag}}" wx:key="text">
+                    {{item.text}}
+                </view>
+            </view>
+			<view style="display: flex;flex-wrap: wrap;padding-left:60rpx;padding-top: 30rpx;">
+			    <view class="c3 f32 wei" style="width: 100%;">优惠活动</view>
+			    <view class="price_tag {{item.index===activityIndex?'active':''}}" data-data="{{item}}" catchtap="checkActiveTag" wx:for="{{activityList}}" wx:key="text">
+			        {{item.text}}
+			    </view>
+			</view>
+            <view class="f-c wei5">
+                <view class="dropdown_btn" catchtap="onReset">重置</view>
+                <view class="dropdown_btn active" catchtap="getPerCost">确定</view>
+            </view>
+        </view>
+    </view>
+</view>

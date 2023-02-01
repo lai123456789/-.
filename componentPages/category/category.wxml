@@ -1,0 +1,27 @@
+<view class="category_page">
+	<view class="cates_banner">
+		<swiper autoplay circular>
+			<swiper-item wx:for="{{bannerList}}" data-id="{{index}}" wx:key="index">
+				<view>
+					<image mode="widthFix" src="{{item}}"></image>
+				</view>
+			</swiper-item>
+		</swiper>
+	</view>
+
+	<view class="card {{isFixedTop?'fixed':''}}" style="top: 0;" id="navbar">
+		<my_dropdown id="my_dropdown" selectionList="{{selectionList}}" bindshowmasklayer="showMaskLayer"
+			bindgetdistancechange="_getDistance" bindgetpercost="_getPerCost" bindgetsortdata="_getsortdata"
+			fixedHeight='{{fixedHeight}}' bindtap="scrollTo"></my_dropdown>
+	</view>
+	<view class="card" wx:if="{{isFixedTop}}"></view>
+	<view class="page_1">
+		<waterfallFlow id="waterfallFlow" leftData="{{leftArr}}" rightData="{{rightArr}}" middleGap="{{ middleGap }}"
+			longitude="{{longitude}}" bindclickDom='test'>
+		</waterfallFlow>
+		<view class="f-c" hidden="{{loading}}">正在加载中...</view>
+		<van-empty wx:if="{{pageData.length<=0}}" description="空空如也~" />
+	</view>
+</view>
+<view class="zzc" hidden="{{zzc_hidden}}" bindtap="closeDropdown">
+</view>

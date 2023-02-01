@@ -1,0 +1,120 @@
+.seller-info {
+  background: #fff;
+  height: 150rpx;
+}
+.store-name {
+  margin-top: 10rpx;
+  max-width: 750rpx;
+  height: 100rpx;
+  font-weight: bold;
+  font-size: 36rpx;
+  color: #333333;
+  background: white;
+  padding-top: 28rpx;
+  padding-left: 33rpx;
+}
+.location {
+  height: 150rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 46rpx 0 30rpx;
+}
+.location .location-icon {
+  width: 33rpx;
+  height: 33rpx;
+  margin-right: 8rpx;
+}
+.location .address-title {
+  width: 206rpx;
+  font-size: 28rpx;
+  padding-left: 10rpx;
+  font-weight: 500;
+  color: black;
+}
+.location .address {
+  flex: 1;
+  /* line-height: 25px; */
+  /* height: 72rpx; */
+  font-size: 26rpx;
+  color: gray;
+}
+.seller-mobile {
+  display: flex;
+  background: white;
+  height: 112rpx;
+  margin: 1rpx 0 0;
+  padding: 37rpx 30rpx 0;
+}
+.seller-mobile .mobile-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 10rpx;
+}
+.seller-mobile .mobile-title {
+  width: 206rpx;
+  font-size: 28rpx;
+  padding-left: 20rpx;
+  font-weight: 500;
+}
+.seller-mobile .mobile {
+  display: flex;
+  height: 18rpx;
+  font-size: 26rpx;
+  color: gray;
+}
+.seller-open {
+  display: flex;
+  background: white;
+  height: 112rpx;
+  margin-top: 3rpx;
+  padding: 37rpx 30rpx;
+}
+.seller-open .open-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 10rpx;
+}
+.seller-open .time {
+  display: flex;
+  font-size: 26rpx;
+  color: gray;
+}
+.seller-open .open-title {
+  width: 206rpx;
+  font-size: 28rpx;
+  padding-left: 20rpx;
+  font-weight: 500;
+  color: black;
+}
+.seller-envirnment {
+  background: white;
+  margin-top: 20rpx;
+}
+.seller-envirnment .envirnment-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  padding-top: 32rpx;
+  padding-left: 30rpx;
+  color: black;
+}
+.seller-envirnment .envirnment-pic image {
+  width: 216rpx;
+  height: 216rpx;
+  margin-left: 30rpx;
+  margin-top: 32rpx;
+}
+.seller-envirnment .safe-doc {
+  font-size: 32rpx;
+  font-weight: 500;
+  padding-top: 32rpx;
+  padding-left: 30rpx;
+  color: black;
+}
+.seller-envirnment .doc-pic image {
+  width: 216rpx;
+  height: 216rpx;
+  margin-left: 30rpx;
+  margin-top: 32rpx;
+  margin-bottom: 41rpx;
+}

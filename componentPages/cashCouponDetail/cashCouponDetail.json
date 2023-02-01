@@ -1,0 +1,22 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "waterfallFlow": "/component/waterfallFlow/waterfallFlow",
+    "custom-tab-bar": "/component/custom-tab-bar/index",
+	 "van-count-down": "/common/vant/count-down/index"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#000000",
+    "list": [
+      {
+        "pagePath": "index/index"
+      },
+      {
+        "pagePath": "index/index2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,294 @@
+<view style="background-color: #FFF; overflow-x: hidden;" id="allTop">
+	<view class="swiper_box" style="height: 767rpx;">
+		<!-- 返回按钮 -->
+		<view class="navigation-container" style="{{'height: ' + navigationBarAndStatusBarHeight+'px'}}">
+			<!--空白来占位状态栏-->
+			<view style="{{'height: ' + statusBarHeight}}"></view>
+			<!--自定义导航栏-->
+			<view class="navigation-bar" style="{{'height:' + navigationBarHeight}}">
+				<view class="navigation-buttons" style="{{'height:' + menuButtonHeight}}" bindtap="onClickBack">
+					<image src="/static/back.png" style="width: 50rpx; height:50rpx;" wx:if="{{!shareUser}}"></image>
+				</view>
+				<view class="navigation-title" style="{{'line-height:' + navigationBarHeight}}">{{title}}</view>
+			</view>
+		</view>
+		<swiper autoplay indicator-dots circular bindchange="bindSwiperChange">
+			<swiper-item wx:for="{{sellerInfo.imageList}}" wx:key="index">
+				<view class="swiper_img">
+					<image mode="widthFix" src="{{item.url}}"></image>
+				</view>
+			</swiper-item>
+		</swiper>
+		<view class="imgNumText f24">{{ imgNumSwiper + 1 }}/{{ sellerInfo.imageList.length }}</view>
+		<view class="contentChange">
+			<view class="neirong">
+				<view hidden="{{ isTextChange }}">{{sellerInfo.interestValue}}人感兴趣</view>
+				<view hidden="{{ !isTextChange }}" class="flex items-center">
+					<image src="/static/huo.png" style="width: 38rpx; height: 38rpx;"></image>
+					<text>人气值 {{sellerInfo.popularityValue}}</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view style="height: 116rpx;background-image:url('{{ API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205312VQGZ' }}');" class="djqmiaoBg flex justify-between items-center">
+		<view class="flex cf ml50">
+			<view class="wei">
+				<text class="f40">￥</text>
+				<text class="f50">{{sellerInfo.buyAmount}}</text>
+			</view>
+			<view class="m-lr6">
+				<view style="width: 49rpx;height: 34rpx;background-image:url('{{ API_ROOT+'/1/accessory/redirect?accessory_no=XL20220712150303QRCD' }}');"
+				 class="vector cf93 f20 p-l-10">{{sellerInfo.discount}}折</view>
+				<text class="f24 t-d-l">￥{{sellerInfo.amount}}</text>
+			</view>
+		</view>
+		<view class="cf flex mr50">
+			<view>
+				<view class="f22">已售{{sellerInfo.receivedCount}}</view>
+				<view class="f22 wei t-c mt5" style="background: #D8433C;">仅剩{{sellerInfo.remainingCount}}</view>
+			</view>
+			<view class="ml40 t-c">
+				<block wx:if="{{sellerInfo.remainingTimeNum >= 0}}">
+					<view class="f22 mb5" wx:if="{{isOngoing}}">距秒杀结束</view>
+					<block wx:if="{{sellerInfo.remainingTimeNum === 0}}">
+						<van-count-down wx:if="{{isOngoing}}" use-slot time="{{ timeStampM }}"
+							bind:change="onChangeTime" bind:finish="finishMiao">
+							<text class="item">{{ timeData.hours <10 ? '0'+timeData.hours : timeData.hours}}</text><text
+								class="cf">:</text>
+							<text
+								class="item">{{ timeData.minutes <10 ? '0'+timeData.minutes : timeData.minutes}}</text><text
+								class="cf">:</text>
+							<text
+								class="item">{{ timeData.seconds <10 ? '0'+timeData.seconds : timeData.seconds }}</text>
+						</van-count-down>
+						<view class="cf f32" wx:else>已结束</view>
+					</block>
+					<block wx:else>
+						<text class="m-lr6 f24">剩余{{sellerInfo.remainingTimeNum}}天</text>
+					</block>
+				</block>
+				<block wx:else>
+					<view class="cf f32">已结束</view>
+				</block>
+			</view>
+		</view>
+	</view>
+	<view class="p3 border-bottom-10-f5">
+		<view>
+			<image src="/static/fangxingou.png" style="width: 112rpx; height: 42rpx; margin-bottom: -10rpx;">
+			</image>
+			<text class="c3 f32 ml10">{{sellerInfo.name}}</text>
+		</view>
+		<view class="f-y-c f24 cf93 m10">支付立返消费金！！！</view>
+		<view class="flex items-center">
+			<view class="flex items-center">
+				<image src="/static/Frame.png" style="width: 30rpx; height: 30rpx;"></image>
+				<text class="f24 c6 m-lr4">平台认证</text>
+			</view>
+			<view class="flex items-center" style="margin: 0 40rpx;">
+				<image src="/static/Frame.png" style="width: 30rpx; height: 30rpx;"></image>
+				<text class="f24 c6 m-lr4">凭兑换码到店</text>
+			</view>
+			<view class="flex items-center">
+				<image src="/static/Frame.png" style="width: 30rpx; height: 30rpx;"></image>
+				<text class="f24 c6 m-lr4">过期退 随时退</text>
+			</view>
+		</view>
+	</view>
+	<view class="p3 border-bottom-10-f5">
+		<view class="c3 wei f32 mb15">适用商户</view>
+		<view class="f-x-bt">
+			<view>
+				<view class="c3">{{sellerInfo.storeName}}</view>
+				<view class="flex items-center">
+					<image src="/static/shoucangAddress.png" style="width: 24rpx; height: 24rpx;"></image>
+					<view class="line-1 f20 c9" style="width: 500rpx;">{{sellerInfo.storeAddress}}</view>
+				</view>
+			</view>
+			<view data-mobile="{{sellerInfo.storePhone}}" bindtap="clickMobile">
+				<image src="/static/phone.png" style="width: 34rpx; height: 34rpx;"></image>
+				<view class="f20 c6">电话</view>
+			</view>
+		</view>
+	</view>
+	<view class="p3 border-bottom-10-f5">
+		<view class="mb15 flex">
+			<view class="c3 wei f32 m-lr4">使用方式</view>
+			<!-- 先去掉这个帮助中心 后期再补上 -->
+			<!-- <image src="/static/question.png" style="width: 24rpx; height: 24rpx;" bindtap="goHelp" data-info="{{sellerInfo}}"></image> -->
+		</view>
+		<view class="flex justify-around items-center">
+			<image src="/static/xiangou.png" style="width: 96rpx; height: 95rpx;"></image>
+			<image src="/static/youjiantou.png" style="width: 27rpx; height: 25rpx;"></image>
+			<image src="/static/xianmen.png" style="width: 96rpx; height: 95rpx;"></image>
+			<image src="/static/youjiantou.png" style="width: 27rpx; height: 25rpx;"></image>
+			<image src="/static/chushima.png" style="width: 96rpx; height: 95rpx;"></image>
+		</view>
+	</view>
+	<view class="p3 border-bottom-10-f5">
+		<view class="c3 wei f32 mb15">使用时间</view>
+		<view class="c3 f26 mt10">有效期：</view>
+		<view class="f26 c9">
+			<text wx:if="{{sellerInfo.startTime}}">· {{sellerInfo.startTime}}至{{sellerInfo.endTime}}</text>
+			<text wx:else>无</text>
+		</view>
+		<view class="c3 f26 mt10">使用时间：</view>
+		<view class="f26 c9">
+			<text wx:if="{{sellerInfo.useTimeType === 1}}">不限制</text>
+			<block wx:elif="{{sellerInfo.useTimeType === 2 && sellerInfo.useTimeLimit != '[{}]'}}">
+				· <text wx:for="{{sellerInfo.useTimeLimit}}" wx:key="index" class="mr10">{{item.useTime}};</text>
+			</block>
+			<text wx:else>无</text>
+		</view>
+		<view class="c3 f26 mt10">不可用日期：</view>
+		<view class="f26 c9">
+			<text wx:if="{{sellerInfo.unavailableDateType === 1}}">不限制</text>
+			<block wx:elif="{{sellerInfo.unavailableDateType === 2 && sellerInfo.unavailableDateLimit != '[{}]'}}">
+				· <text wx:for="{{sellerInfo.unavailableDateLimit}}" wx:key="index"
+					class="mr10">{{item.unavailableTime}};</text>
+			</block>
+			<text wx:else>无</text>
+		</view>
+		<!-- <view class="f26 c9">· {{sellerInfo.unavailableDateLimit}} {{sellerInfo.unavailableDateType === 1 ? "不限制" :
+		sellerInfo.unavailableDateType === 2 ? "" : sellerInfo.unavailableDateType === 3 ? "（周末、法定节假日）" : ""}}</view> -->
+		<!-- <view class="f26 c9">· 2022/06/03至2022/06/05；2022/09/10至2022/09/12；（周末、法定节假日通用）</view> -->
+	</view>
+	<view class="p3 border-bottom-10-f5">
+		<view class="c3 f32 wei mb15">使用规则</view>
+		<view class="c3 f26 mt20">预约信息：</view>
+		<view class="f26 c9">· {{sellerInfo.appointInfo}}</view>
+		<view class="c3 f26 mt20">不适用范围：</view>
+		<view class="f26 c9">
+			<block wx:if="{{sellerInfo.unavailableLimit.length > 0}}">
+				· 除<text wx:for="{{sellerInfo.unavailableLimit}}" wx:key="index"
+					class="mr10">{{item}}{{index+1 === sellerInfo.unavailableLimit.length?'': '、'}}</text>外全场通用
+			</block>
+			<text wx:else>全场通用</text>
+		</view>
+		<view class="c3 f26 mt20">使用规则：</view>
+		<block wx:if="{{sellerInfo.useRules.length > 0}}">
+			<view class="f26 c9 mb15" wx:for="{{sellerInfo.useRules}}" wx:key="index">· {{item}}</view>
+		</block>
+		<text wx:else class="f26 c9">无</text>
+	</view>
+	<view class="m3" wx:if="{{daijinquanList.length>0}}">
+		<view class="c3 f32 wei">更多优惠</view>
+		<view data-number="{{ item.number }}" class="daijinquanBg flex items-center justify-around mb20  p03"
+		style="background-image:url('{{ API_ROOT+'/1/accessory/redirect?accessory_no=XL20220712145526AADP' }}');"
+			wx:for="{{ daijinquanList }}" wx:key="index">
+			<view>
+				<view class="c3 f28 line-1" style="width: 500rpx;">{{item.name}}</view>
+				<view class="flex items-center">
+					<text class="f36 wei cf93">￥{{item.buyAmount}}</text>
+					<text class="m01 t-d-l c9 f28">￥{{item.amount}}</text>
+					<view style="background: #FFEBEB; padding: 0 6rpx;" class="f26 cf93">{{item.discount}}折</view>
+					<view class="cf93 f20 m01" wx:if="{{item.remainingCount}}">仅剩{{item.remainingCount}}张</view>
+				</view>
+				<view class="c9 f20">活动时间：{{item.startTime}}<text class="m-lr4">至</text>{{item.endTime}}</view>
+			</view>
+			<view class="flex flex-col justify-around items-center" style="height: 100%; padding: 20rpx 0;">
+				<image src="{{item.remainingTimeNum > 0 ? API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205914TWOQ' : '/static/miaosha.png'}}"
+					style="width: 106rpx; height: 54rpx;" data-vouchers="{{item}}" bindtap="goQianggou"></image>
+				<view class="f20 cf93 flex items-center payCountDown">
+					<text class="m-lr6">剩余</text>
+					<!-- 超过24小时 显示天数 -->
+					<block wx:if="{{ item.remainingTimeNum > 0 }}">
+						<text>{{item.remainingTimeNum}}天</text>
+					</block>
+					<!-- 小于24小时内，显示时分秒00:00:00格式 -->
+					<block wx:else>
+						<van-count-down time="{{ item.timeStamp }}" bind:finish="finish" />
+					</block>
+				</view>
+				<view class="c9 f20">已售{{item.receivedCount}}</view>
+			</view>
+		</view>
+	</view>
+	<image hidden="{{ showTop }}" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707210001LNJJ'}}"
+		style="width: 98rpx; height: 98rpx; position: fixed; right: 40rpx; bottom: 10%;" catchtap="goTop"></image>
+	<!-- <view class="flex-col group_19">
+        <image src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/622874095a7e3f03104413ca/624e8341303c03001117ab03/16493126442998893276.png" class="image_16" />
+        <view class="bottom-group flex justify-center view_2">
+            <text decode="decode" class="text_24">优惠</text>
+            <text decode="decode" class="text_25">评价</text>
+            <text decode="decode" bindtap="toDetail" class="text_26">详情</text>
+            <text decode="decode" bindtap="toRecommend" class="text_27">推荐</text>
+        </view>
+    </view> -->
+	<view class="flex-col group_43 store_detail mt30">
+		<text decode="decode">商家展示</text>
+		<view class="flex-col items-center group_44">
+			<image mode="widthFix" wx:for="{{sellerInfo.infoImageList}}" wx:key="index" src="{{item.url}}"
+				class="image_37" />
+		</view>
+	</view>
+	<view class="recommend bf">
+		<view class="f32 wei p332">相关推荐</view>
+		<waterfallFlow leftData="{{leftArr}}" rightData="{{rightArr}}" middleGap='{{ middleGap }}' bind:clickDom='test'
+			longitude="{{longitude}}">
+		</waterfallFlow>
+	</view>
+	<!-- <custom-tab-bar></custom-tab-bar> -->
+	<!-- 消费金弹窗 -->
+	<!-- <view class="xfj_popup f-c-c" hidden="{{!xfjpopup}}">
+        <view class="xfj_text">
+            {{consumptionGold}}
+        </view>
+        <image mode="widthFix" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707210108UUTQ'}}"></image>
+        <image class="xfj_btn" mode="widthFix" bindtap="goGold" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707210052APKD'}}"></image>
+        <image bindtap="closePopup" style="height:96rpx;width:47rpx" mode="widthFix" src="/static/xfj_close.png"></image>
+    </view>
+    <view class="zzc" hidden="{{zzc_hidden}}">
+    </view> -->
+</view>
+<view class="foot-fixed-area bf p2 flex justify-between">
+	<view class="flex flex-1 items-center justify-around">
+		<view class="t-c">
+			<button class="clearbtn f22 wei4" style="color: #302B53;" bindtap="goIndex">
+				<image src="/static/detailshouye.png" style="width: 44rpx; height: 44rpx;"></image>
+				<view class="f22" style="color: #302B53;">首页</view>
+			</button>
+		</view>
+		<view class="t-c">
+			<!-- 有绑手机号  直接分享 -->
+			<button class="clearbtn f22 wei4" style="color: #302B53;" open-type="share" wx:if="{{isPhoneYes}}">
+				<image src="/static/fenxiang.png" style="width: 44rpx; height: 44rpx;"></image>
+				<view>分享</view>
+			</button>
+			<!-- 没有绑手机号 先绑定手机号再分享 -->
+			<button class="clearbtn f22 wei4" style="color: #302B53;" open-type="getPhoneNumber"
+				bindgetphonenumber="getphonenumber" wx:else>
+				<image src="/static/fenxiang.png" style="width: 44rpx; height: 44rpx;"></image>
+				<view>分享</view>
+			</button>
+		</view>
+		<view class="t-c">
+			<button class="clearbtn f22 wei4" style="color: #302B53;" bindtap="collect"
+				data-number="{{ sellerInfo.number }}">
+				<image src="{{ sellerInfo.isCollect == 1 ? '/static/sc_active.png' : '/static/shoucang.png' }}"
+					style="width: 44rpx; height: 44rpx;"></image>
+				<view>{{sellerInfo.isCollect == 1 ? '已收藏' : '收藏'}}</view>
+			</button>
+		</view>
+	</view>
+	<view style="width: 384rpx;margin: 0 24rpx;">
+		<!-- 已绑定手机号？  直接跳转 -->
+		<button bindtap="goQianggou" data-vouchers="{{sellerInfo}}"  wx:if="{{isPhoneYes}}"
+			class="clearbtn f-c {{(!isOngoing || sellerInfo.remainingCount === 0) ?'bggray':''}}"
+			style="height: 88rpx;background: linear-gradient(125deg, #FF6370 0%, #F84150 100%);border-radius: 45rpx;">
+			<view class="cf">
+				<view class="f28 t-c wei4">{{sellerInfo.remainingTimeNum === 0 ? '立即秒杀' : '立即抢购'}}</view>
+				<view class="f22 wei4">支付后返{{sellerInfo.returnConsumption}}消费金</view>
+			</view>
+		</button>
+		<!-- 未绑定手机号？  先绑定手机号操作才跳转 -->
+		<button open-type="getPhoneNumber" bindgetphonenumber="getphonenumber" wx:else data-vouchers="{{sellerInfo}}"  bindtap="tapPhoneType" data-clicktype="buy"
+			class="clearbtn f-c {{(!isOngoing || sellerInfo.remainingCount === 0) ?'bggray':''}}"
+			style="height: 88rpx;background: linear-gradient(125deg, #FF6370 0%, #F84150 100%);border-radius: 45rpx;">
+			<view class="cf">
+				<view class="f28 t-c wei4">{{sellerInfo.remainingTimeNum === 0 ? '立即秒杀' : '立即抢购'}}</view>
+				<view class="f22 wei4">支付后返{{sellerInfo.returnConsumption}}消费金</view>
+			</view>
+		</button>
+	</view>
+</view>

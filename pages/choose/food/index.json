@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "点餐台",
+  "usingComponents": {
+    "img-loader": "../../../component/img-loader/index",
+    "food-card": "../../../component/food-card/index",
+    "foodCartCom": "../../../component/foodCartCom/index",
+    "van-popup": "../../../common/vant/popup/index",
+    "van-image": "../../../common/vant/image/index",
+    "van-dialog": "../../../common/vant/dialog/index",
+    "van-overlay": "../../../common/vant/overlay/index",
+    "van-empty": "../../../common/vant/empty/index",
+    "van-field": "../../../common/vant/field/index",
+    "van-icon": "../../../common/vant/icon/index"
+  }
+}

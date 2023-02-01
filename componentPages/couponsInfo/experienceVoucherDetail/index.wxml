@@ -1,0 +1,41 @@
+<view class="tiyanquanInfo">
+	<view class="allTopbg mb20" wx:for="{{info}}" wx:key="index" 
+	style="background-image:url('{{ API_ROOT+'/1/accessory/redirect?accessory_no=XL20220712150026TSPE' }}')">
+		<view class="allTopbgLeft">
+			<view style="text-align: center;">
+				<view>
+					<text style="font-size: 36rpx; font-weight: bold; color: #FFFFFF;">￥</text>
+					<text style="font-size: 80rpx; font-weight: 800; color: #FFFFFF;">{{item.amount}}</text>
+				</view>
+				<view style="font-size: 20rpx; font-weight: 500; color: #FFFFFF;">无门槛</view>
+			</view>
+		</view>
+		<view class="allTopbgRight">
+			<view>
+				<view style="font-size: 28rpx;font-weight: bold;color: #333333;">{{item.amount}}元体验劵</view>
+				<view style="margin: 14rpx 0;font-size: 20rpx;font-weight: 500;color: #F93A4A;">仅限购买代金券可用</view>
+				<view style="font-size: 20rpx;font-weight: 500;color: #999999;">{{item.startDate}}至{{item.endDate}}</view>
+			</view>
+			<view>
+				<image src="/static/goUse.png" style="width: 108rpx; height: 50rpx;" bindtap="goUse"></image>
+				<view
+					style="margin-top: {{ item.remainingTimeNum > 1 ? '40rpx' : '18rpx' }}; font-size: 20rpx;font-weight: 500;color: #F93A4A;">
+					<view wx:if="{{ item.remainingTimeNum > 1 }}">{{item.remainingTimeNum}}天后过期
+					</view>
+					<view wx:else class="t-c">
+						<view>今天</view>
+						<view>23：59过期</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="allBottmText">
+		<view>使用说明: </view>
+		<view>1.优惠券不可叠加使用，每单限用1张； </view>
+		<view>2.仅限购买代金券使用;</view>
+		<view>3.体验券不兑换，不找零; </view>
+		<view>4.使用体验券的订单，若发生售后退款，体验券可退;</view>
+		<view>5.在法律允许的范围内，活动解释权归美点汇所有。</view>
+	</view>
+</view>

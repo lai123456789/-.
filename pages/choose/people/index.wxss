@@ -1,0 +1,12 @@
+/* pages/appointment/people/index.wxss */
+.item-content-class {
+  border-radius: 50%;
+  background-color: #FFF;
+  border: 2rpx solid rgba(252, 106, 50, 1);
+  color: rgba(252, 106, 50, 1);
+}
+.item-content-class:active {
+  border-radius: 50%;
+  background-color: rgba(252, 106, 50, 1);
+  color: #FFF;
+}

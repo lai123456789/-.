@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "waterfallFlow": "/component/waterfallFlow/waterfallFlow",
+    "my_dropdown": "/component/my_dropdown/my_dropdown",
+    "van-empty": "/common/vant/empty/index"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/gold/gold",
+    "pages/message/message",
+    "pages/my/my",
+    "pages/pay/pay",
+    "pages/coupon/coupon",
+    "yb_o2o/gfood/dmf",
+    "pages/qr/qr",
+    "pages/choose/food/index",
+    "pages/choose/people/index",
+    "pages/choose/receipt/index",
+    "pages/choose/prepaid/index",
+	"pages/choose/cash/index",
+	"pages/choose/orderTablePay/orderTablePay"
+  ],
+  "subPackages": [
+    {
+      "root": "componentPages/",
+      "pages": [
+        "aboutUs/aboutUs",
+        "contactUs/contactUs",
+        "category/category",
+        "cash/cash",
+        "payEntrance/payEntrance",
+        "expenseBill/expenseBill",
+        "sellerDetail/sellerDetail",
+        "searchPage/searchPage",
+        "rules/rules",
+        "public/public",
+        "qrCode/qrCode",
+        "qrCode404/qrCode404",
+       	"test/test",
+	"template/index",
+	"couponsInfo/experienceVoucherDetail/index",
+	"couponsInfo/cardVoucher/index",
+	"collection/index",
+	"couponsInfo/verificationCodeDetails/verificationCodeDetails",
+	"cashCouponDetail/cashCouponDetail",
+	"couponsInfo/helpCenter/helpCenter",
+	"buyCashCoupon/buyCashCoupon",
+	"couponsInfo/toApplyRefund/toApplyRefund"     
+	 ]
+    }
+  ],
+  "tabBar": {
+    "color": "#302B53",
+    "selectedColor": "#FE2544",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "/static/shouye.png",
+        "selectedIconPath": "/static/shouye_active.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/gold/gold",
+        "iconPath": "/static/xiaofeijin.png",
+        "selectedIconPath": "/static/xiaofeijin_active.png",
+        "text": "消费金"
+	},{
+        "pagePath": "pages/my/my",
+        "iconPath": "/static/wode.png",
+        "selectedIconPath": "/static/wode_active.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation"],
+  "lazyCodeLoading": "requiredComponents",
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

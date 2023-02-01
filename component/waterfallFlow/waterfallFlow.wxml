@@ -1,0 +1,67 @@
+<view class="page_index">
+  <view class="page_left">
+    <view wx:for="{{ leftList }}" wx:for-item="item" wx:key="number" style="padding-bottom: 20rpx;">
+      <view bind:tap="clickDom" data-data="{{item}}" class="waterfall_box">
+        <image mode="widthFix" class='page_image class-image class-image-left' style='border-radius: 8rpx;' src='{{item.imageUrl}}'></image>
+        <view>
+          <view class="f28" style="padding: 0 16rpx 20rpx 16rpx;">
+            <view class="pt6 f30">{{item.name}}</view>
+            <view class="f-bt f-y-c pt17">
+              <view class="c9 f22 flex">
+                <view style="max-width: 90rpx; height: 32rpx; overflow: hidden;">{{item.storeTypeName}}</view>
+                <!-- <view hidden="{{!longitude}}" class="p-l-20">{{item.distance}}km</view>  2022-06-30 优惠券版本先不显示 -->
+				<view class="m-lr6"> | </view>
+				<view class="c9">￥{{item.perCost}}/人</view>
+              </view>
+			  <!-- 先去掉消费金比例字段 -->
+              <!-- <view class="f18 c9 flex items-center active_color justify-center" style="width: 140rpx;height: 30rpx; background-image: url(/static/fanquan.png); background-size: 100% 100%;">
+				  <view style="width: 28rpx;"></view>
+				  <view class="flex flex-1 items-center justify-center">8.8%消费金</view>
+			  </view> -->
+            </view>
+			<!-- 如果 没有参加代金券活动 这里无需显示 -->
+			<view class="flex items-center pt17" wx:if="{{ item.couponType === 2 }}">
+				<image style="width: 32rpx; height: 32rpx;" src="/static/quan.png"></image>
+				<view class="ml5 active_color"><text class="f20">￥</text><text class="f28">{{item.couponBuyAmount}}</text></view>
+				<view class="ml5 f24 c9 t-d-l">{{item.couponAmount}}</view>
+				<view class="ml5 f24 c6">代金券</view>
+			</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style="width: {{ middleGap }};" />
+  <view class="page_right">
+	<view wx:for="{{ rightList }}" wx:for-item="item" wx:key="number" style="padding-bottom: 20rpx;">
+	  <view bind:tap="clickDom" data-data="{{item}}" class="waterfall_box">
+	    <image mode="widthFix" class='page_image class-image class-image-right' style='border-radius: 8rpx;' src='{{item.imageUrl}}'></image>
+	    <view>
+	      <view class="f28" style="padding: 0 16rpx 20rpx 16rpx;">
+	        <view class="pt6 f30">{{item.name}}</view>
+	        <view class="f-bt f-y-c pt17">
+	          <view class="c9 f22 flex">
+	            <view style="max-width: 90rpx; height: 32rpx; overflow: hidden;">{{item.storeTypeName}}</view>
+	            <!-- <view hidden="{{!longitude}}" class="p-l-20">{{item.distance}}km</view>  2022-06-30 优惠券版本先不显示 -->
+				<view class="m-lr6"> | </view>
+				<view class="c9">￥{{item.perCost}}/人</view>`
+	          </view>
+			  <!-- 先去掉消费金比例字段 -->
+	          <!-- <view class="f18 c9 flex items-center active_color justify-center" style="width: 140rpx;height: 30rpx; background-image: url(/static/fanquan.png); background-size: 100% 100%;">
+				  <view style="width: 28rpx;"></view>
+				  <view class="flex flex-1 items-center justify-center">8.8%消费金</view>
+			  </view> -->
+	        </view>
+			<!-- 如果 没有参加代金券活动 这里无需显示 -->
+			<view class="flex items-center pt17" wx:if="{{ item.couponType === 2 }}">
+				<image style="width: 32rpx; height: 32rpx;" src="/static/quan.png"></image>
+				<view class="ml5 active_color"><text class="f20">￥</text><text class="f28">{{item.couponBuyAmount}}</text></view>
+				<view class="ml5 f24 c9 t-d-l">{{item.couponAmount}}</view>
+				<view class="ml5 f24 c6">代金券</view>
+			</view>
+	      </view>
+	    </view>
+	  </view>
+	</view>
+  </view>
+</view>

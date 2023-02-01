@@ -1,0 +1,34 @@
+.tabs {
+  height: 84rpx;
+  /* border-bottom: 1rpx solid #eee; */
+  padding-top: 16rpx;
+  padding-bottom: 20rpx;
+  background-color: #ffffff;
+}
+
+.tabs_title {
+  display: flex;
+}
+
+.tabs_item {
+  color: #333333;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  flex: 1;
+  font-size: 34rpx;
+  font-weight: 500;
+}
+
+.tabs_text {
+  height: 68rpx;
+  /* width: 100rpx; */
+  font-weight: 400;
+  text-align: center;
+}
+
+.tabs_text.active {
+  color: #fe2544;
+  font-weight: 500;
+  /* border-bottom: 4rpx solid currentColor; */
+}

@@ -1,0 +1,39 @@
+<view>
+    <view class="store-name">
+        {{sellerInfo.name}}
+    </view>
+    <view class="seller-info wei5">
+        <view class="location">
+            <image mode="widthFix" class="location-icon" src="../../static/location_icon.png"></image>
+            <text class="address-title"> 详细地址：</text>
+            <view class="address"> {{sellerInfo.address}} </view>
+        </view>
+    </view>
+    <view class="seller-mobile wei5">
+        <image mode="widthFix" class="mobile-icon" src="../../static/seller_mobile.png"></image>
+        <text class="mobile-title"> 商家电话：</text>
+        <view class="mobile" bindtap="clickMobile" data-mobile='{{sellerInfo.mobile}}'> {{sellerInfo.mobile}} </view>
+    </view>
+    <view class="seller-open wei5">
+        <image mode="widthFix" class="open-icon" src="../../static/business_hours.png"></image>
+        <text class="open-title"> 营业时间：</text>
+        <block wx:if="{{sellerInfo.businessHours24=='ON'}}">
+            <text class="time"> 24小时营业 </text>
+        </block>
+        <view class="time mr20" wx:for="{{sellerInfo.businessHours}}" wx:key="*this"> {{item.startTime}} - {{item.endTime}}</view>
+    </view>
+    <view class="seller-envirnment">
+        <view class="envirnment-title">
+            <text>商家环境</text>
+        </view>
+        <view class="envirnment-pic">
+            <image wx:for="{{sellerInfo.environmentPhotos}}" bindtap="clickImg" data-envirnment="{{item}}" wx:key="*this" src="{{item}}"></image>
+        </view>
+        <!-- <view class="safe-doc">
+            <text>安全档案</text>
+        </view>
+        <view class="doc-pic">
+            <image wx:for="{{sellerInfo.safetyRecords}}" bindtap="clickImg" data-envirnment="{{item}}" wx:key="this" src="{{item}}"></image>
+        </view> -->
+    </view>
+</view>

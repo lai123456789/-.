@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "waterfallFlow": "/component/waterfallFlow/waterfallFlow",
+	"van-popup": "/common/vant/popup/index"
+  },
+  "navigationBarTitleText": "我的"
+}

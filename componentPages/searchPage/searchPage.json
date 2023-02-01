@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-empty": "/common/vant/empty/index",
+    "my_dropdown": "/component/my_dropdown/my_dropdown",
+    "waterfallFlow": "/component/waterfallFlow/waterfallFlow"
+  },
+  "navigationBarTitleText": "搜索"
+}

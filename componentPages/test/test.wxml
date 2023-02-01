@@ -1,0 +1,19 @@
+<view class="demo-list">
+
+    <view class="rowup">
+
+        <view class="item">黄**刚获得55消费金</view>
+
+        <view class="item">许**刚获得66消费金</view>
+
+        <view class="item">文**刚获得13消费金</view>
+
+        <view class="item">张**刚获得105消费金</view>
+
+        <view class="item">陈**刚获得59消费金</view>
+
+        <view class="item">占**刚获得55消费金</view>
+
+    </view>
+
+</view>

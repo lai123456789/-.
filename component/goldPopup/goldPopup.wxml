@@ -1,0 +1,4 @@
+<view class="gold_popup">
+    <image class="gold_img" mode="widthFix" src="/static/xfj.png"></image>
+    <view class="gold_text">{{amount}}</view>
+</view>

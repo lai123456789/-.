@@ -1,0 +1,221 @@
+<!--pages/receipt/index.wxml-->
+<wxs module="tools" src="../../../utils/parseUtil.wxs"></wxs>
+<view class="receipt-title-view">
+  <view class="store-name-view margin-top-20">{{storeInfo.store_name}}</view>
+  <view class="order-num-view">【{{receiptTitle}}】</view>
+</view>
+
+<van-skeleton wx:if="{{orderClassify == 'BEFORE' || orderClassify == 'CONSUMER'}}" row="3" loading="{{ loading }}">
+  <view class="receipt-content-view margin-top-20">
+    <view class="order-view">
+      <view class="order-item-view">
+        <label class="order-title-label">序号</label>
+        <label class="order-value-label">
+        <block wx:if="{{menuConsoleInfo.serial == ''}}">----</block>
+        <block wx:else>{{menuConsoleInfo.serial}}</block>
+        </label>
+      </view>
+      <view class="order-item-view">
+        <label class="order-title-label">消费人数</label>
+        <label class="order-value-label">{{menuConsoleInfo.repast_count}}</label>
+      </view>
+    </view>
+    <view class="order-view">
+      <label class="order-title-label">时间</label>
+      <label class="order-value-label">{{menuConsoleInfo.create_time}}</label>
+    </view>
+  </view>
+</van-skeleton>
+
+<van-skeleton wx:if="{{orderClassify == 'TAKEOUT'}}" row="6" loading="{{ loading }}">
+  <view class="receipt-content-view margin-top-20">
+    <view class="order-view">
+      <view class="order-item-view">
+        <label class="order-title-label">序号</label>
+        <label class="order-value-label">{{menuConsoleInfo.serial}}</label>
+      </view>
+      <view class="order-item-view text-overflow">
+        <label class="order-title-label">订单编号</label>
+        <label class="order-value-label text-overflow">{{menuConsoleInfo.order_n}}</label>
+      </view>
+    </view>
+    <view class="order-view">
+      <view class="order-item-view">
+        <label class="order-title-label">配送状态</label>
+        <label class="order-value-label">{{menuConsoleInfo.takeout_status_desc}}</label>
+      </view>
+      <view class="order-item-view">
+        <label class="order-title-label">餐具个数</label>
+        <label class="order-value-label">{{menuConsoleInfo.repast_count}}</label>
+      </view>
+    </view>
+    <view class="order-view">
+      <view class="order-item-view">
+        <label class="order-title-label">下单时间</label>
+        <label class="order-value-label">{{menuConsoleInfo.create_time}}</label>
+      </view>
+      <view class="order-item-view">
+        <label class="order-title-label">预留电话</label>
+        <label class="order-value-label">
+          {{menuConsoleInfo.mate_data.user_mobile}}
+        </label>
+      </view>
+    </view>
+    <view class="order-view">
+      <view class="order-item-view text-overflow">
+        <label class="order-title-label">用户称呼</label>
+        <label class="order-value-label text-overflow">{{menuConsoleInfo.mate_data.user_name}}</label>
+      </view>
+      <view class="order-item-view">
+        <label class="order-title-label">配送距离</label>
+        <label class="order-value-label">{{menuConsoleInfo.mate_data.distance}}KM</label>
+      </view>
+    </view>
+    <view class="order-view">
+      <label class="order-title-label">商家电话</label>
+      <label class="order-value-label" bindtap="_makePhoneCall"
+        data-mobile="{{menuConsoleInfo.mate_data.store_mobile}}">
+        <label>{{menuConsoleInfo.mate_data.store_mobile}}</label>
+        <van-icon custom-class="icon-custom-class" color="{{color}}" name="phone" size="30rpx" />
+      </label>
+    </view>
+    <view class="order-view row-flex-start">
+      <label class="order-title-label">配送地址</label>
+      <label class="order-value-label" bindtap="_clickUserAddress">
+        <label>{{menuConsoleInfo.mate_data.user_address}}</label>
+        <van-icon custom-class="icon-custom-class" color="{{color}}" name="location" size="30rpx" />
+      </label>
+    </view>
+  </view>
+</van-skeleton>
+
+<van-skeleton wx:if="{{orderClassify == 'PACK'}}" row="6" loading="{{ loading }}">
+  <view class="receipt-content-view margin-top-20">
+    <view class="order-view text-overflow">
+      <view class="order-item-view">
+        <label class="order-title-label">序号</label>
+        <label class="order-value-label">{{menuConsoleInfo.serial}}</label>
+      </view>
+      <view class="order-item-view">
+        <label class="order-title-label">就餐人数</label>
+        <label class="order-value-label">{{menuConsoleInfo.repast_count}}</label>
+      </view>
+    </view>
+    <view class="order-view text-overflow">
+      <view class="order-item-view">
+        <label class="order-title-label">自取状态</label>
+        <label class="order-value-label">{{menuConsoleInfo.pack_status_desc}}</label>
+      </view>
+
+      <view class="order-item-view">
+        <label class="order-title-label">订单编号</label>
+        <label class="order-value-label">{{menuConsoleInfo.order_n?menuConsoleInfo.order_n:'无'}}</label>
+      </view>
+    </view>
+    <view class="order-view text-overflow">
+      <view class="order-item-view">
+        <label class="order-title-label">下单时间</label>
+        <label class="order-value-label">{{menuConsoleInfo.create_time}}</label>
+      </view>
+      <view class="order-item-view">
+        <label class="order-title-label">取餐时间</label>
+        <label class="order-value-label">{{menuConsoleInfo.mate_data.take_time}}</label>
+      </view>
+    </view>
+    <view class="order-view text-overflow">
+      <view class="order-item-view">
+        <label class="order-title-label">商家电话</label>
+        <label class="order-value-label" bindtap="_makePhoneCall"
+          data-mobile="{{menuConsoleInfo.mate_data.store_mobile}}">
+          <label>{{menuConsoleInfo.mate_data.store_mobile}}</label>
+          <van-icon custom-class="icon-custom-class" color="{{color}}" name="phone" size="30rpx" />
+        </label>
+      </view>
+      <view class="order-item-view">
+        <label class="order-title-label">预留电话</label>
+        <label class="order-value-label">
+          {{menuConsoleInfo.mate_data.user_mobile}}
+        </label>
+      </view>
+    </view>
+    <view class="order-view row-flex-start">
+      <label class="order-title-label">取餐地址</label>
+      <label class="order-value-label" bindtap="_clickStoreAddress">
+        <label>{{menuConsoleInfo.mate_data.store_address}}</label>
+        <van-icon custom-class="icon-custom-class" color="{{color}}" name="location" size="30rpx" />
+      </label>
+    </view>
+  </view>
+</van-skeleton>
+
+<view wx:if="{{menuConsoleInfo.await_confirmed.length>0}}"
+  class="receipt-content-view order-pending-view active-color margin-top-20">
+  {{menuConsoleInfo.await_confirmed.length}}个菜单正加速下单中，请耐心等候...</view>
+
+<view wx:if="{{menuConsoleInfo.pass_confirmed.food_count > 0}}">
+  <view class="receipt-content-view margin-top-20">
+    <view class="food-list-view">
+      <view class="cell-title">
+        <view class="cell-title-item name">名称</view>
+        <view class="cell-title-item price">单价</view>
+        <view class="cell-title-item count">数量</view>
+        <view class="cell-title-item amount">金额</view>
+      </view>
+      <view wx:for="{{menuConsoleInfo.pass_confirmed.confirmed_food_es}}" wx:key="cindex" wx:for-item="citem" class="cell-title" style="font-weight: normal;">
+        <view class="cell-title-item name">
+          <label>{{citem.food_name}}{{citem.spec_value_name}}</label>
+        </view>
+        <view class="cell-title-item price">
+          <label class="price-label">{{tools.toFix(citem.selling_amount / citem.food_count)}}</label>
+        </view>
+        <view class="cell-title-item count">
+          <label class="count-label">{{citem.food_count}}</label>
+        </view>
+        <view class="cell-title-item amount">
+          <label>{{citem.amount}}</label>
+        </view>
+      </view>
+      <view wx:if="{{orderClassify == 'CONSUMER'}}">
+        <label>备注：{{menuConsoleInfo.pass_confirmed.remark}}</label>
+      </view>
+      <view wx:else>
+        <label>备注：{{menuConsoleInfo.remark}}</label>
+      </view>
+    </view>
+  </view>
+</view>
+
+<van-empty wx:else>
+  <view class="empty-desc-view">您的订单等待支付，支付后厨房为您准备佳肴</view>
+</van-empty>
+
+<view class="footer-view"></view>
+
+<van-dialog id="van-dialog" />
+
+<view hidden="{{!menuConsoleInfo.menu_console_n}}">
+  <view wx:if="{{orderClassify=='TAKEOUT' || orderClassify=='PACK'}}" class="bottom-btn-view">
+    <van-button wx:if="{{takeoutContinueBtnShow}}" custom-style="width: 100%" square="{{true}}" color="{{color}}"
+      type="primary" bind:click="_clickContinue">
+      继续点餐
+    </van-button>
+    <van-button wx:if="{{takeoutAgainBtnShow}}" custom-style="width: 100%" square="{{true}}" color="{{color}}"
+      type="primary" bind:click="_clickAgain">
+      再来一单
+    </van-button>
+  </view>
+  <view wx:if="{{consumerBtnShow}}" class="bottom-btn-view">
+    <van-button custom-style="width: 50%" custom-class="btn-line-view" square="{{true}}" color="{{color}}"
+      type="default" bind:click="_clickContinue">继续点餐</van-button>
+    <van-button custom-style="width: 50%" square="{{true}}" color="{{color}}" type="info" bind:click="_clickPay">付款结算
+    </van-button>
+  </view>
+  <view wx:if="{{consumerPayBtnShow}}" class="bottom-btn-view">
+    <van-button custom-style="width: 100%" square="{{true}}" color="{{color}}" type="info" bind:click="_clickPay">付款结算
+    </van-button>
+  </view>
+  <view wx:if="{{beforeBtnShow}}" class="bottom-btn-view">
+    <van-button custom-style="width: 100%" custom-class="btn-line-view" square="{{true}}" color="{{color}}"
+      type="default" bind:click="_clickContinue">继续点餐</van-button>
+  </view>
+</view>

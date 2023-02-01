@@ -1,0 +1,136 @@
+/* pages/receipt/index.wxss */
+page {
+  font-family: PingFang SC;
+  background-color: rgb(249, 249, 249);
+}
+
+.receipt-title-view {
+  text-align: center;
+  background-color: #FFF;
+  background-image: linear-gradient(#FFF, rgb(249, 249, 249));
+  padding: 20rpx 0;
+}
+
+.store-name-view,
+.order-num-view {
+  margin: auto;
+  width: 550rpx;
+  overflow: hidden;
+  color: #000000;
+  font-size: 34rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+}
+
+.receipt-content-view {
+  width: 710rpx;
+  padding: 20rpx;
+  background-color: #FFF;
+}
+
+.order-view {
+  color: #666666;
+  font-size: 24rpx;
+  line-height: 50rpx;
+  width: 100%;
+}
+
+.order-item-view {
+  display: inline-flex;
+  width: 50%;
+}
+
+.order-title-label {
+  white-space: nowrap;
+  margin-right: 20rpx;
+}
+
+.order-value-label {
+  color: #333333;
+}
+
+.order-value-label .icon-custom-class {
+  top: 6rpx;
+  left: 10rpx;
+}
+
+.order-pending-view {
+  font-size: 24rpx;
+  line-height: 50rpx;
+  text-align: center;
+}
+
+.food-list-view {
+  font-size: 24rpx;
+  color: #333333;
+  line-height: 50rpx;
+}
+
+.cell-title {
+  font-weight: bold;
+  box-sizing: border-box;
+  overflow: auto;
+  _height: 1%;
+}
+
+.cell-title .cell-title-item {
+  float: left;
+}
+
+.cell-title .name {
+  width: 40%;
+}
+
+.cell-title .price {
+  width: 20%;
+}
+
+.cell-title .count {
+  width: 20%;
+}
+
+.cell-title .amoun {
+  width: 20%;
+}
+
+
+.food-price-view label {
+  display: inline-block;
+  width: 33.33%;
+}
+
+.price-label {
+  text-align: left;
+}
+
+.count-label {
+  text-align: center;
+}
+
+.amount-label {
+  text-align: right;
+}
+
+.printer-view {
+  font-size: 24rpx;
+  text-align: center;
+}
+
+
+/* 底部按钮 */
+.bottom-btn-view {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+.btn-line-view {
+  border-right: 1rpx solid #FFF !important;
+}
+/* 底部按钮 */
+
+/* empty 描述 */
+.empty-desc-view {
+  font-size: 24rpx;
+  color: #666666;
+}

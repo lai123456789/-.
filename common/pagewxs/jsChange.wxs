@@ -1,0 +1,23 @@
+var filters = {
+	toFixed: function(value,num=2) {
+		// 默认四舍五入 小数点后两位 如果有传num 则以num为主
+		return value.toFixed(num)
+	},
+	toStr: function(value) {
+		return value.toString()
+	},
+	toNum: function(value) {
+		return value.toNumber()
+	},
+	Mathceil: function(value) {
+		return Math.ceil(value)
+	},
+
+}
+
+module.exports = {
+	toFixed: filters.toFixed,
+	toStr: filters.toStr,
+	toNum: filters.toNum,
+	Mathceil: filters.Mathceil
+}

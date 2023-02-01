@@ -1,0 +1,93 @@
+<!-- <view class="my_dropdown">
+	<view class="my_dropdown_item" wx:for="{{selectionList}}" wx:key="index" bindtap="showPopup"
+		data-index="{{item.selectIndex}}">
+		<view class="my_dropdown_item_title {{item.selectIndex==showIndex?'active':''}}">{{item.name}}</view>
+	</view>
+	<view wx:if="{{ show }}" style="position: absolute;margin-top:40px;background-color: #fff; width: 100%;">
+		//附近
+		<view wx:if="{{showIndex==0}}">
+			<view wx:for="{{distance}}" wx:key="text" wx:for-index="index1" wx:for-item="item1">
+				<view class="my_dropdown_cell" catchtap="getDistance" data-value="{{item1.value}}"
+					data-text="{{item1.text}}" data-index="{{index1}}">
+					<view class=" my_dropdown_cell_item {{distanceIndex==index1?'active':''}}">{{item1.text}}</view>
+				</view>
+			</view>
+		</view>
+		//全部类型
+		<view wx:if="{{showIndex==1}}">
+			<view wx:for="{{typeList}}" wx:key="text" wx:for-index="index1" wx:for-item="item1">
+				<view class="my_dropdown_cell" catchtap="getType" data-value="{{item1.value}}"
+					data-text="{{item1.text}}" data-index="{{index1}}">
+					<view class=" my_dropdown_cell_item {{distanceIndex==index1?'active':''}}">{{item1.text}}</view>
+				</view>
+			</view>
+		</view>
+		//全部品类 就是首页的筛选栏目 美食 一样的
+		<view wx:if="{{showIndex==2}}">
+			<view style="display: flex;">
+				<scroll-view scroll-y style="height:500px" class="left_menv">
+					<view class="menu_item {{index===foodIndex?'active':''}}" wx:for="{{foodList}}" wx:key="name"
+						bindtap="foodItemTap" data-index="{{index}}">
+						{{item.name}}
+					</view>
+				</scroll-view>
+				<scroll-view scroll-top="{{scrollTop}}" scroll-y style="height:500px" class="right_content">
+					<view class="area_group {{index1===foodItemIndex?'active':''}}" wx:for="{{foodItem}}"
+						wx:key="car_name" wx:for-index="index1" catchtap="getFoodData" data-index="{{index1}}"
+						data-data="{{item1}}" wx:for-item="item1">
+						{{item1.name}}
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+		//智能排序
+		<view wx:if="{{showIndex==3}}" wx:for="{{IntelligentSortArr}}" wx:key="num">
+			<view class="my_dropdown_cell" catchtap="getIntelligentSortData" data-data="{{item}}"
+				data-index="{{index}}">
+				<view class="my_dropdown_cell_item {{index==IntelligentIndex?'active':''}}">{{item.text}}</view>
+			</view>
+		</view>
+	</view>
+</view> -->
+<!-- <view class="zzc" hidden="{{zzc_hidden}}" bindtap="closeDropdown"></view> -->
+<view class="p3">
+	<van-empty wx:if="{{dataList.length === 0}}" description="空空如也~" />
+	<view class="bf p3 flex items-center bs15 mb30" style="height: 220rpx;" wx:for="{{dataList}}" wx:key="index"
+		data-number="{{item.couponVoucherN}}" bindtap="goInfo" bindlongpress="cancelTheCollection">
+		<image src="{{item.logo}}" style="height: 160rpx; width: 160rpx;"></image>
+		<view class="p-l-30">
+			<view class="f32 c0 wei line-1" style="width: 400rpx;">（{{item.name}}）</view>
+			<!-- 商户形态 先不显示  -->
+			<!-- <block wx:if="{{ item.text === '商户' }}">
+				<view class="flex items-center f24 c9 m20">
+					<image src="/static/5xing.png" style="height: 24rpx; width: 128rpx;"></image>
+					<text class="p-l-30">顺德菜</text>
+					<text class="m-lr8" style="width: 2rpx; height: 18rpx; background: #999999;"></text>
+					<text>￥30/人</text>
+				</view>
+				<view class="flex items-center" style="width: 436rpx;">
+					<image src="/static/shoucangAddress.png" style="height: 24rpx; width: 24rpx;"></image>
+					<view class="ml5 flex-1 line-1 c9 f24 wei4">中心盐物中心盐</view>
+				</view>
+			</block> -->
+			<!-- 优惠券形态 -->
+			<!-- <block wx:else> -->
+				<view class="flex items-center f24 c9 m10 justify-between">
+					<view>
+						<text class="ml5 active_color f36 wei8"><text>￥</text><text>{{item.buyAmount}}</text></text>
+						<text class="ml5 f25 c9 t-d-l">{{ item.amount }}</text>
+					</view>
+					<view class="c9 f24">已售{{item.receivedCount}}</view>
+				</view>
+				<view class="flex justify-between items-center" style="width: 436rpx;">
+					<view class="flex items-center flex-1 mr10">
+						<image src="/static/shoucangAddress.png" style="height: 24rpx; width: 24rpx;"></image>
+						<view class="ml5 flex-1 line-1 c9 f24 wei4">{{item.storeAddress}}</view>
+					</view>
+					<image src="/static/goBuy.png" style="height: 42rpx; width: 100rpx;" catchtap="goBuy" data-vouchers="{{item}}"></image>
+				</view>
+			<!-- </block> -->
+		</view>
+	</view>
+
+</view>

@@ -1,0 +1,24 @@
+@import "/common/main.wxss";
+
+.custome_tabbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    width: 100vw;
+    color: #302B53;
+    font-size: 22rpx;
+    display: flex;
+    height: 110rpx;
+    padding-bottom: 20rpx;
+}
+
+.custome_tabbar>view {
+    padding-left: 100rpx;
+    align-items: center;
+}
+
+.custome_tabbar image {
+    width: 44rpx;
+
+}

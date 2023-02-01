@@ -1,0 +1,87 @@
+/* component/food-card/index.wxss */
+
+/* 右侧菜品列表 */
+.view-tab-food-choices-cell {
+  width: 100%;
+  height: 230rpx;
+  padding: 20rpx 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.image-tab-food-choices-cell-food {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 10rpx;
+}
+
+.menu-name-view {
+  width: 100%;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+.image-tab-food-cell-select {
+  border-radius: 6rpx;
+  padding: 8rpx 12rpx;
+  font-size: 22rpx;
+  color: #FFF;
+  text-align: center;
+  background-color: rgb(241, 241, 241);
+  position: absolute;
+  bottom: 20rpx;
+  right: 30rpx;
+}
+.image-tab-food-cell-select.soldout {
+  padding: 5rpx 10rpx;
+  font-size: 20rpx;
+  color: #999;
+  background-color: rgb(241, 241, 241);
+}
+
+.image-tab-food-choices-cell-select {
+  margin-left: 10rpx;
+}
+
+.view-tab-food-choices-cell-info-bg {
+  margin-left: 26rpx;
+  width: 344rpx;
+  height: 180rpx;
+}
+
+.view-tab-food-choices-cell-info-name {
+  margin-top: -8rpx;
+  font-size: 30rpx;
+  color: #000000;
+}
+
+.view-tab-food-choices-cell-info-number-rate {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+.view-tab-food-choices-cell-info-price {
+  margin-right: 4rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.view-tab-food-choices-cell-info-price .price-start {
+  font-size: 18rpx;
+  color: #cccccc;
+}
+.view-tab-food-choices-cell-info-price .hprice-image {
+  height: 20rpx;
+  width: 24rpx;
+  margin-right: 4rpx;
+}
+
+.image-tab-food-choices-cell-info-flag {
+  line-height: 50rpx;
+  margin-left: 20rpx;
+}
+
+.view-tab-food-choices-cell-info-flag {
+  font-size: 22rpx;
+  color: rgba(153, 153, 153, 1);
+  margin-left: 11rpx;
+}

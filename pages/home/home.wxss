@@ -1,0 +1,196 @@
+.search_box {
+	padding: 0rpx 26rpx 10rpx;
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	width: 284rpx;
+	height: 72.25rpx;
+}
+
+.search_input {
+	flex: 1;
+	width: 386rpx;
+	margin-left: 26rpx;
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.fdj {
+	position: absolute;
+	width: 40rpx;
+	height: 40rpx;
+	top: 10rpx;
+	left: 15rpx;
+}
+
+.sm {
+	width: 44rpx;
+	position: absolute;
+	right: 15rpx;
+	top: 8rpx;
+	font-size: 44rpx;
+	z-index: 2;
+}
+
+.search_input input {
+	height: 60rpx;
+	/* border-radius: 40rpx; */
+	color: #999999;
+	padding-left: 54rpx;
+	font-size: 30rpx;
+}
+
+.swiper_box {
+	padding: 0 30rpx;
+}
+
+.card {
+	height: 40px;
+}
+
+.card.fixed {
+	background-color: #fff;
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+}
+
+.home_category {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	color: #302b53;
+	font-weight: bold;
+	font-size: 26rpx;
+	height: 381rpx;
+}
+
+.cates_item {
+	width: 187rpx;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.home_category image {
+	width: 120rpx;
+	height: 120rpx;
+}
+
+.home_banner {
+	display: flex;
+	height: 350rpx;
+	padding: 0 30rpx;
+}
+
+.banner_left {
+	width: 346rpx;
+}
+
+.banner_right {
+	flex: 1;
+	padding-left: 10rpx;
+}
+
+.banner_right image {
+	width: 336rpx;
+	height: 170rpx;
+}
+
+.menu_item {
+	width: 370rpx;
+	height: 88rpx;
+	padding: 20rpx 60rpx;
+	background-color: #f4f4f4;
+	color: #333333;
+}
+
+.menu_item.active {
+	color: #fe2544;
+	background-color: #fff;
+}
+
+.area_group {
+	width: 370rpx;
+	height: 88rpx;
+	padding: 20rpx 60rpx;
+	background-color: #fff;
+}
+
+.price_tag.active {
+	color: #fe2544;
+	background: #ffeeef;
+}
+
+.price_tag {
+	width: 144rpx;
+	height: 50rpx;
+	background: #f5f5f5;
+	/* border-radius: 31rpx; */
+	margin: 20rpx 20rpx 50rpx 0;
+	text-align: center;
+	line-height: 50rpx;
+	font-size: 26rpx;
+	color: #333333;
+}
+
+.page_1 {
+	min-height: 100vh;
+}
+
+.page_1 .van-empty {
+	min-height: 1310rpx !important;
+}
+
+.tiyanquanDiong .lingquBtn {
+	background-size: 100% 100%;
+	height: 310rpx;
+	width: 430rpx;
+	background-color: transparent;
+	position: absolute;
+	left: 50%;
+	top: 89%;
+	transform: translate(-50%, -50%);
+}
+
+.tiyanquanDiong .listCenter {
+	position: absolute;
+	left: 50%;
+	top: 66%;
+	transform: translate(-50%, -50%);
+	overflow-y: scroll;
+}
+
+.tiyanquanDiong .centerBg {
+	background-size: 100% 100%;
+	width: 604rpx;
+	height: 146rpx;
+	display: flex;
+	align-items: center;
+}
+
+.tiyanquanDiong .centerBg .centerLeft {
+	margin-left: 161rpx;
+}
+
+.tiyanquanDiong .centerBg .centerLeft .cl-1 {
+	font-size: 28rpx;
+	font-weight: 400;
+	color: #333333;
+}
+
+.tiyanquanDiong .centerBg .centerLeft .cl-2 {
+	color: #999999;
+	font-size: 20rpx;
+}
+
+.tiyanquanDiong .centerBg .centerRight {
+	text-align: right;
+	flex: 1;
+	margin-right: 30rpx;
+}

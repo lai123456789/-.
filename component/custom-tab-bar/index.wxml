@@ -1,0 +1,14 @@
+<view class="custome_tabbar" bindtap="theModelUpdtae">
+    <view class="flex-1">
+        <image mode="widthFix" src="/static/pingjia.png"></image>
+        <view>评价</view>
+    </view>
+    <view class="flex-1">
+        <image mode="widthFix" src="/static/fenxiang.png"></image>
+        <view>分享</view>
+    </view>
+    <view class="flex-1">
+        <image mode="widthFix" src="/static/shoucang.png"></image>
+        <view>收藏</view>
+    </view>
+</view>

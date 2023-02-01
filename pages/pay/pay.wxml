@@ -1,0 +1,56 @@
+<view class="pay-container">
+	<view class="flex-col h100">
+		<view class="weui-cell" style="background-color: transparent;padding:50rpx;display: flex;">
+			<view class="f-g-1">
+				<view class="f32 wei">付款给商家</view>
+				<view class="c9 f24">商家：{{sellerInfo.name}}</view>
+			</view>
+			<view class="f-g-0 f-c">
+				<view class="img f-c">
+					<image src="{{sellerInfo.logo}}" style="border-radius: 50%; height: 88rpx;width: 88rpx;"></image>
+				</view>
+			</view>
+		</view>
+		<view>
+			<image class="fddfdd" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205432RFUP'}}"></image>
+		</view>
+		<view class="m050">
+			<view class="ft26 c9 f-x-bt">
+				<text>金额</text>
+				<text>请询问服务员后输入</text>
+			</view>
+			<view class="pt20 pb10 b-b-e flex" style="align-items: flex-start;">
+				<text class="f56 wei">￥</text>
+				<input type="digit" class="f-g-1 mdinput wei" placeholder="消费金额" bindinput="minput" confirm-type="done" placeholder-class="mdps" />
+			</view>
+		</view>
+		<view class="m050 flex" style="margin-top: 63rpx; justify-content:space-between;">
+			<text class="ft28 c3 wei">是否使用消费金<text class="cf93 f28 wei4"> (余额：{{currency?currency:"0"}})</text></text>
+			<view class="psmsc1 f-x-bt bf border1 c9">
+				<view class="psms1 f-c f24 wei5 {{active==1?'active':''}}" bindtap="usePreferential" data-index="1">否
+				</view>
+				<view class="psms1 f-c f24 wei5 {{active==2?'active':''}}" bindtap="usePreferential" data-index="2">是
+				</view>
+			</view>
+		</view>
+		<view class="m050 flex" style="margin-top: 63rpx;padding-bottom: 24rpx; justify-content:space-between;border-bottom: 1px solid #eee;">
+			<text class="ft28 c3 wei">实际应付</text>
+			<text class="ft28 c3 wei5">合计 ￥{{practical_amount}}</text>
+		</view>
+		<view class="flex m050" style="margin-top: 24rpx;justify-content:space-between;">
+			<text class="ft28 c9 wei">支付后得到消费金</text>
+			<text class="ft28 cf93 wei5">预计 ￥{{consumer_amount}}</text>
+		</view>
+		<view class="foot-btnc mt340">
+			<button wx:if="{{money && mobile}}" class="foot-btn b-l-f0fa p0" bindtap="_createdOrder" style="border-radius: 48rpx;font-size:34rpx;color:#fff;width: 100%;">
+				<text>已和店员确认，立即买单</text>
+			</button>
+			<button wx:elif="{{money}}" class="foot-btn b-l-f0fa p0" open-type="getPhoneNumber" bindgetphonenumber="getphonenumber" style="border-radius: 48rpx;font-size:34rpx;color:#fff;width: 100%;">
+				<text>已和店员确认，立即买单</text>
+			</button>
+			<button wx:else class="foot-btn b-c-9 p0" style="border-radius: 48rpx;font-size:34rpx;color:#fff;width: 100%;">
+				<text>已和店员确认，立即买单</text>
+			</button>
+		</view>
+	</view>
+</view>

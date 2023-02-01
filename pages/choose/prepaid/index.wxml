@@ -1,0 +1,77 @@
+<view class="pay-container">
+  <view class="f-col h100">
+    <view class="weui-cell" style="background-color: transparent;padding:50rpx;display: flex;">
+      <view class="f-g-1">
+        <view class="f32 wei">付款给商家</view>
+        <view class="c9 f24">商家：{{sellerInfo.name}}</view>
+      </view>
+      <view class="f-g-0 f-c">
+        <view class="img f-c">
+          <image src="{{sellerInfo.logo}}" style="border-radius: 50%; height: 88rpx;width: 88rpx;"></image>
+        </view>
+      </view>
+    </view>
+    <view>
+      <image class="fddfdd" src="../../../static/fddfdd.png"></image>
+    </view>
+    <view class="m050">
+      <view class="ft26 c9 f-x-bt">
+        <text>金额</text>
+        <text>请询问服务员后输入</text>
+      </view>
+      <view class="pt20 pb10 b-b-e f-row" style="align-items: flex-start;">
+        <text class="f56 wei">￥</text>
+        <input disabled type="digit" class="f-g-1 mdinput" value="{{money}}" placeholder="消费金额" placeholder-class="mdps" />
+      </view>
+    </view>
+    <!-- <block wx:if="{{locationFlag==false}}">
+            <view class="m050 f-row" style="margin-top: 12rpx; justify-content:space-between;">
+                <view class="f-c">
+                    <icon class="icon-box-img" type="info" size="18" color="#FF6010"></icon>
+                    <view class="f26" style="color: #FF6010;margin-left: 10rpx;">
+                        您未授权位置，将不能获得消费金补贴
+                    </view>
+                </view>
+                <view class="c6 f26" bindtap="setLocation">去设置</view>
+            </view>
+        </block>
+        <block wx:if="{{locationFlag==true &&canPay==false}}">
+            <view class="m050 f-row" style="justify-content:space-between;margin-top: 12rpx;">
+                <view class="f-c">
+                    <icon class="icon-box-img" type="info" size="18" color="#FF3B30"></icon>
+                    <view class="f26" style="color: #FF3B30;margin-left: 10rpx;">
+                        您已超出付款范围，将不能获得消费金补贴
+                    </view>
+                </view>
+                <view class="c6 f26 f-c" bindtap="authLocation" style="height: 72rpx;width: 96rpx;">刷新</view>
+            </view>
+        </block> -->
+
+    <view class="m050 f-row" style="margin-top: 63rpx; justify-content:space-between;">
+      <text class="ft28 c3 wei">是否使用消费金(<text class="c9 f26">{{currency?currency:"0"}}</text>)</text>
+      <view class="psmsc1 f-x-bt bf border1 c9">
+        <view class="psms1 f-c f24 wei5 {{active==1?'active':''}}" bindtap="usePreferential" data-index="1">否</view>
+        <view class="psms1 f-c f24 wei5 {{active==2?'active':''}}" bindtap="usePreferential" data-index="2">是</view>
+      </view>
+    </view>
+    <view class="m050 f-row" style="margin-top: 63rpx;padding-bottom: 24rpx; justify-content:space-between;border-bottom: 1px solid #eee;">
+      <text class="ft28 c3 wei">实际应付</text>
+      <text class="ft28 c3 wei5">合计 ￥{{practical_amount}}</text>
+    </view>
+    <view class="f-row m050" style="margin-top: 24rpx;justify-content:space-between;">
+      <text class="ft28 c9 wei">支付后得到消费金</text>
+      <text class="ft28 cf93 wei5">预计 ￥{{consumer_amount}}</text>
+    </view>
+    <view class="foot-btnc mt340">
+      <button wx:if="{{money && mobile}}" class="foot-btn b-l-f0fa p0" bindtap="_createdOrder" style="border-radius: 48rpx;font-size:34rpx;color:#fff;width: 100%;">
+        <text>立即买单</text>
+      </button>
+      <button wx:elif="{{money}}" class="foot-btn b-l-f0fa p0" open-type="getPhoneNumber" bindgetphonenumber="getphonenumber" style="border-radius: 48rpx;font-size:34rpx;color:#fff;width: 100%;">
+        <text>立即买单</text>
+      </button>
+      <button wx:else class="foot-btn b-c-9 p0" style="border-radius: 48rpx;font-size:34rpx;color:#fff;width: 100%;">
+        <text>立即买单</text>
+      </button>
+    </view>
+  </view>
+</view>

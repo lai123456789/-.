@@ -1,0 +1,28 @@
+
+var Parse = {
+
+  toFix: function (value) {
+    var fixedNum = value.toFixed(2)
+    if(fixedNum * 1 <= 0) {
+      return "0.00"
+    }
+    return fixedNum // 此处2为保留两位小数，保留几位小数，这里写几    
+  },
+  toString: function (value) {
+    return value.toString()
+  },
+  toNumber: function (value) {
+    return Number(value)
+  },
+  toInt: function (value) {
+
+    return parseInt(value)
+  }
+}
+
+module.exports = {
+  toFix: Parse.toFix,
+  toString: Parse.toString,
+  toNumber: Parse.toNumber,
+  toInt: Parse.toInt,
+}

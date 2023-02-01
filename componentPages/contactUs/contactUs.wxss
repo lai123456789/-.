@@ -1,0 +1,23 @@
+.contact_us_index {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 151rpx;
+}
+.mdh {
+  width: 130rpx;
+  height: 182rpx;
+}
+.zxkf {
+  margin-top: 279rpx;
+  height: 110rpx;
+  background-color: #f93a4a;
+  border-radius: 50rpx;
+  color: white;
+}
+.lxdh {
+  margin-top: 60rpx;
+  width: 590rpx;
+  height: 110rpx;
+}

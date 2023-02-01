@@ -1,0 +1,68 @@
+<view class="gold_index">
+	<view class="wallet" style="padding-left: 16rpx;">
+		<view class="question" bindtap="goRules">
+			<image style="width: 24rpx;height: 24rpx;margin-left: 50rpx;" src="/static/wenhao.png"></image>
+		</view>
+		<image style="width:718rpx;height:395rpx" mode="widthFix"
+			src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205540FSHS'}}"></image>
+		<view class="amount">{{currency}}</view>
+		<!-- <view class="amount">{{tools.toFixed(currency)}}</view>
+        <wxs module="tools">
+        var toFixed =function(value) {
+            return value.toFixed(2)
+        }
+        module.exports = {
+            toFixed: toFixed
+        }
+        </wxs> -->
+		<image class="ckmx" bindtap="functionUpdate" mode="widthFix" src="/static/Group406.png"></image>
+	</view>
+	<view>
+		<!-- <view class="f32 wei p332">新店推荐</view> -->
+		<view class="f32 wei p032">
+			<van-tabs active="{{ active }}" bindchange="onChange" color="#F93A4A" title-active-color="#F93A4A"
+				animated="true">
+				<van-tab title="优惠券"></van-tab>
+				<van-tab title="消费金"></van-tab>
+				<van-tab title="新店推荐"></van-tab>
+			</van-tabs>
+		</view>
+		<van-empty wx:if="{{pageData.length===0}}" description="空空如也~" />
+		<waterfallFlow leftData="{{leftArr}}" rightData="{{rightArr}}" middleGap='{{ middleGap }}' bind:clickDom='lookShop'
+			longitude="{{longitude}}">
+		</waterfallFlow>
+	</view>
+	<!-- 消费金弹窗 -->
+	<view class="xfj_popup f-c-c" hidden="{{!xfjpopup}}">
+		<view class="xfj_text">
+			<image style="width: 223rpx;height: 38rpx;"
+				src="https://api.xiaolv6.com/1/accessory/redirect?accessory_no=XL20220909095924ZHDD"></image>
+			<view class="text_1">{{consumptionGold}}</view>
+		</view>
+		<image style="width: 652rpx;height: 800rpx;"
+			src="https://api.xiaolv6.com/1/accessory/redirect?accessory_no=XL20220909095944YGJJ"></image>
+		<view class="xfj_btn" wx:if="{{pageDataPayShop.length >= 4}}">
+			<view class="c6 f24 mb15">推荐商家</view>
+			<view class="flex o-x-s mb20" style="width: 570rpx;margin-left: 110rpx;">
+				<view bindtap="goInfo" data-number="{{item.number}}" wx:for="{{ pageDataPayShop }}" wx:for-item="item"
+					wx:key="id" style="border-radius: 16rpx;background-color: #FFEEDC;width: 165rpx;height: 170rpx;" class="f-c mr10">
+					<view class="pt20">
+						<image class='page_image class-image class-image-right'
+							style='height: 108rpx; width: 108rpx; border-radius: 16rpx;' src='{{item.imageUrl}}'></image>
+						<view style="max-width: 140rpx;margin-top: -10rpx;" class="line-1 c3 f22">{{item.name}}</view>
+					</view>
+				</view>
+				<view style="width: 15rpx;"></view>
+			</view>
+		</view>
+		<view class="xfj_look" wx:else>
+			<view class="f-c">
+				<image class="xfj_btn" bindtap="goGold" style="height: 147rpx;width: 402rpx;" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707210052APKD'}}"></image>
+			</view>
+			<view class="c6 f24 mt15" style="color: #811D10;">下次支付时可直接抵扣</view>
+		</view>
+		<image class="xfj_close" bindtap="goGold" src="/static/Group1221.png"></image>
+	</view>
+	<view class="zzc" hidden="{{zzc_hidden}}"></view>
+</view>
+<!-- <view>功能正在升级中</view> -->

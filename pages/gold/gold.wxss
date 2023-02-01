@@ -1,0 +1,76 @@
+.wallet {
+  position: relative;
+}
+.amount {
+  position: absolute;
+  top: 270rpx;
+  left: 63rpx;
+  color: #6a0100;
+  font-size: 60rpx;
+  line-height: 100rpx;
+  font-weight: 800;
+}
+.ckmx {
+  position: absolute;
+  z-index: 2;
+  width: 120rpx;
+  height: 34rpx;
+  bottom: 55rpx;
+  left: 331rpx;
+}
+.xfj_popup {
+  position: fixed;
+  width: 100%;
+  /* height: 732.84rpx; */
+  /* top: 165rpx; */
+  top: 75rpx;
+  padding: 0 29rpx;
+  z-index: 22;
+}
+.xfj_look{
+	position: absolute;
+	height: 147rpx;
+	width: 100%;
+	text-align: center;
+	bottom: -30rpx;
+}
+.xfj_btn {
+  position: absolute;
+  height: 147rpx;
+  width: 100%;
+  text-align: center;
+  /* width: 402rpx; */
+  bottom: 160rpx;
+}
+
+.xfj_text {
+  font-size: 110rpx;
+  color: #D83224;
+  top: 160rpx;
+  position: absolute;
+  font-weight: 800;
+  
+  width: 100%;
+  text-align: center;
+}
+.text_1{
+	font-size: 110rpx; 
+	color: #D83224; 
+	position: absolute; 
+	font-weight: 800; 
+	top: 160rpx;
+	width: 100%;
+}
+.xfj_close {
+  position: absolute;
+  height: 68rpx;
+  width: 68rpx;
+  bottom: -110rpx;
+}
+.question {
+  height: 40rpx;
+  width: 80rpx;
+  position: absolute;
+  top: 234rpx;
+  left: 63rpx;
+}

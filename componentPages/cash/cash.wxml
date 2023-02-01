@@ -1,0 +1,47 @@
+<view>
+    <view class="mh100" style="padding:60rpx 45rpx 0;">
+        <view class="f-g-0 f-c">
+            <view class="img">
+                <image class="wh" style="border-radius: 50%;width: 100rpx;height: 100rpx;" src="{{logo}}"></image>
+            </view>
+        </view>
+        <block>
+            <view class="f-c">
+                <text wx:if="{{money}}" class="c3 f56 wei" style="line-height: 56rpx;">
+                    {{money}} </text>
+            </view>
+            <view class="f-c pb20">
+                <text class="c6 f32 wei" style="line-height: 32rpx;">
+                    美点汇
+                </text>
+            </view>
+
+        </block>
+        <view>
+            <radio-group bindchange="radioChange">
+                <label class="weui-cell weui-check__label right30 bs18" wx:for="{{radioItem}}" wx:key="*this">
+                    <view>
+                        <image class="wxtb f-y-c" src="../../static/wxtb.png"> </image>
+                    </view>
+                    <view style="flex: 1;">
+                        <text class="f36 wei c3">{{item.name}}</text>
+                    </view>
+                    <view>
+                        <radio color="#F93A4A" checked="{{item.value=='wx'}}" value="{{item.value}}"></radio>
+                    </view>
+                </label>
+            </radio-group>
+        </view>
+        <view wx:if="{{userMobile}}" class="foot-btnc">
+            <button disabled="{{payment}}" loading="{{payment}}" class="foot-btn b-l-f0fa p0 " bindtap="confirmedPay" style="border-radius: 48rpx;font-size:34rpx;color:#fff;width: 100%;">
+                确认支付
+            </button>
+        </view>
+        <view wx:else class="foot-btnc">
+            <button disabled="{{payment}}" loading="{{payment}}" class="foot-btn b-l-f0fa p0 " open-type="getPhoneNumber" bindgetphonenumber="getphonenumber" style="border-radius: 48rpx;font-size:34rpx;color:#fff;width: 100%;">
+                确认支付
+            </button>
+        </view>
+
+    </view>
+</view>

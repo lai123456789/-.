@@ -1,0 +1,36 @@
+.tiyanquanInfo {
+	margin-top: 50rpx;
+	margin-left: 30rpx;
+}
+
+.tiyanquanInfo .allTopbg {
+	background-size: 100%;
+	width: 690rpx;
+	height: 198rpx;
+	display: flex;
+}
+
+.tiyanquanInfo .allTopbg .allTopbgLeft {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 207rpx;
+}
+
+.tiyanquanInfo .allTopbg .allTopbgRight {
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.tiyanquanInfo .allBottmText {
+	margin-top: 30rpx;
+	margin-left: 8rpx;
+}
+
+.tiyanquanInfo .allBottmText view {
+	font-size: 26rpx;
+	font-weight: 400;
+	color: #666666;
+}

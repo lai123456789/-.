@@ -1,0 +1,13 @@
+{
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "小票",
+  "usingComponents": {
+    "van-skeleton":"../../../common/vant/skeleton",
+    "van-popup":"../../../common/vant/popup",
+    "van-icon":"../../../common/vant/icon",
+    "van-dialog":"../../../common/vant/dialog",
+    "van-divider":"../../../common/vant/divider",
+    "van-empty":"../../../common/vant/empty",
+    "van-button": "../../../common/vant/button"
+  }
+}

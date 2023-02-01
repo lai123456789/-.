@@ -1,0 +1,145 @@
+<view class="hexiaoContent">
+	<view class="p3 top bs16" style="background-image:url('{{ API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205707RYFI' }}');">
+		<view style="height: 166rpx; width: 100%;" class="flex items-center p1">
+			<image src="{{ dataInfo.image }}" style="height: 160rpx; width: 160rpx;" class="bs10"></image>
+			<view class="flex justify-between p-rela flex-1 ml20">
+				<view class="flex-1">
+					<view class="flex items-center wei5">
+						<image src="{{dataInfo.storeLogo}}" style="width: 30rpx; height: 30rpx; margin-right: 8rpx">
+						</image>
+						<view style="width: 400rpx;" class="line-1">{{dataInfo.storeName}}</view>
+					</view>
+					<view class="line-1  wei  c0" style="margin: 14rpx 0;">
+						{{dataInfo.name}}
+					</view>
+					<view class="c9 f20">满{{dataInfo.minAmount}}元可用</view>
+				</view>
+				<view>
+					<image src="/static/xiangyou.png" style="width: 30rpx; height: 30rpx;" catchtap="goUse"
+						data-number="{{ dataInfo.storeN }}" data-coupontype="{{dataInfo.couponType}}">
+					</image>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="bf p331 bs16" style="margin: -12rpx 10rpx 30rpx 10rpx; ">
+		<view style="width: 100%; height: 360rpx;" class="flex items-center justify-center">
+			<canvas style="width: 262rpx; height: 262rpx;" canvas-id="myQrcode"></canvas>
+		</view>
+		<view>
+			<view class="flex items-center justify-between">
+				<view>
+					<text class="wei">核销码（<text class="cf93">{{numberList.length}}</text>张可用）</text>
+					<view class="f24 c9">{{dataInfo.endTime}} 23:59:59 到期</view>
+				</view>
+				<view wx:if="{{numberList.length>0}}" data-snlength="{{numberList.length}}" bindtap="toApplyRefund" class="flex items-center justify-center bceee bs10" style="width: 134rpx; height: 51rpx;">申请退款
+				</view>
+			</view>
+			<view class="{{!showMore? 'hiddenmore' : 'showmore'}}">
+				<view class="c3 flex items-center justify-between m10 {{index>2 ? 'more-item' : ''}}"
+					wx:for="{{numberList}}" wx:key="index">
+					<view class="c3">{{item.sn}}</view>
+					<view class="c6">
+						{{item.status === 0 ? '已失效' : '待使用'}}
+					</view>
+				</view>
+			</view>
+			<block wx:if="{{numberList.length>3}}">
+				<view wx:if="{{showMore}}" class='flex justify-center m20 items-center c6' bindtap='listToggle'>
+					收起
+					<image src="/static/xiangshang.png" style="width: 24rpx; height: 24rpx; margin-left: 6rpx"></image>
+				</view>
+				<view wx:else class='flex justify-center m20 items-center c6' bindtap='listToggle'>
+					查看更多
+					<image src="/static/xiangxia.png" style="width: 24rpx; height: 24rpx; margin-left: 6rpx"></image>
+				</view>
+			</block>
+		</view>
+	</view>
+	<view class="bf p3 m0131 bs16">
+		<view class="flex justify-between mb30">
+			<view class="c3 wei f28">适用门店（1）</view>
+			<!-- <view class="flex items-center c9 f20">
+				<text class="c9">全部门店</text>
+				<image src="/static/xiangyou.png" style="width: 24rpx; height: 24rpx;"></image>
+			</view> -->
+		</view>
+		<view class="f-x-bt">
+			<view>
+				<view class="c3">{{dataInfo.storeName}}</view>
+				<view class="flex items-center">
+					<image src="/static/shoucangAddress.png" style="width: 24rpx; height: 24rpx;"></image>
+					<view class="line-1 f20 c9" style="width: 500rpx;">{{dataInfo.storeAddress}}</view>
+				</view>
+			</view>
+			<view bindtap="callPhone" data-phone="{{dataInfo.storePhone}}">
+				<image src="/static/phone.png" style="width: 34rpx; height: 34rpx;"></image>
+				<view class="f20 c6">电话</view>
+			</view>
+		</view>
+	</view>
+	<view class="bf p3 m0131 bs16">
+		<view class="c3 f28 wei">代金劵详情</view>
+		<view class="c9 f26 flex justify-between items-center m10">
+			<text>· 代金券（{{numberList.length}}张）</text>
+			<text class="c3">￥{{dataInfo.amount}}</text>
+		</view>
+		<view class="c3 f28 wei m10">使用时间</view>
+		<view class="c3 f26 mt10">有效期：</view>
+		<view class="f26 c9">
+			<text wx:if="{{dataInfo.startTime}}">· {{dataInfo.startTime}}至{{dataInfo.endTime}}</text>
+			<text wx:else>无</text>
+		</view>
+		<view class="c3 f26 mt10">使用时间：</view>
+		<view class="f26 c9">
+			<text wx:if="{{dataInfo.useTimeType === 1}}">不限制</text>
+			<block wx:elif="{{dataInfo.useTimeType === 2 && dataInfo.useTimeLimit != '[{}]'}}">
+				· <text wx:for="{{dataInfo.useTimeLimit}}" wx:key="index" class="mr10">{{item.useTime}};</text>
+			</block>
+			<text wx:else>无</text>
+		</view>
+		<view class="c3 f26 mt10">不可用日期：</view>
+		<view class="f26 c9">
+			<text wx:if="{{dataInfo.unavailableDateType === 1}}">不限制</text>
+			<block wx:elif="{{dataInfo.unavailableDateType === 2 && dataInfo.unavailableDateLimit != '[{}]'}}">
+				· <text wx:for="{{dataInfo.unavailableDateLimit}}" wx:key="index"
+					class="mr10">{{item.unavailableTime}};</text>
+			</block>
+			<text wx:else>无</text>
+		</view>
+	</view>
+	<view class="bf p3 m0131 bs16">
+		<view class="c3 f28 wei">使用规则</view>
+		<view class="c3 f26 mt20">预约信息：</view>
+		<view class="f26 c9">· {{dataInfo.appointInfo}}</view>
+		<view class="c3 f26 mt20">不适用范围：</view>
+		<view class="f26 c9">
+			<block wx:if="{{dataInfo.unavailableLimit.length > 0}}">
+				· 除<text wx:for="{{dataInfo.unavailableLimit}}" wx:key="index"
+					class="mr10">{{item}}{{index+1 === dataInfo.unavailableLimit.length?'': '、'}}</text>外全场通用
+			</block>
+			<text wx:else>全场通用</text>
+		</view>
+		<view class="c3 f26 mt20">使用规则：</view>
+		<view class="{{!showMoreRule? 'hiddenmore' : 'showmore'}}">
+			<block wx:if="{{dataInfo.useRules.length > 0}}">
+				<view class="f26 c9 {{index>2 ? 'more-item' : ''}}" wx:for="{{dataInfo.useRules}}" wx:key="index">· {{item}}</view>
+			</block>
+			<text wx:else class="f26 c9">无</text>
+		</view>
+		<block wx:if="{{dataInfo.useRules.length>3}}">
+			<view wx:if="{{showMoreRule}}" class='flex justify-center items-center c6' bindtap='ruleToggle'>
+				收起
+				<image src="/static/xiangshang.png" style="width: 24rpx; height: 24rpx; margin-left: 6rpx"></image>
+			</view>
+			<view wx:else class='flex justify-center items-center c6' bindtap='ruleToggle'>
+				查看更多
+				<image src="/static/xiangxia.png" style="width: 24rpx; height: 24rpx; margin-left: 6rpx"></image>
+			</view>
+		</block>
+	</view>
+</view>
+<view class="f32 wei p332">相关推荐</view>
+<waterfallFlow leftData="{{leftArr}}" rightData="{{rightArr}}" middleGap='{{ middleGap }}' bind:clickDom='test'
+	longitude="{{longitude}}">
+</waterfallFlow>

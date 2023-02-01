@@ -1,0 +1,12 @@
+{
+	"usingComponents": {
+		"van-checkbox": "/common/vant/checkbox/index",
+		"van-checkbox-group": "/common/vant/checkbox-group/index",
+		"van-action-sheet": "/common/vant/action-sheet/index",
+		"Tabs": "/component/Tabs/Tabs",
+		"van-radio": "/common/vant/radio/index",
+		"van-radio-group": "/common/vant/radio-group/index",
+		"van-empty": "/common/vant/empty/index"
+	},
+	"navigationBarTitleText": "支付"
+}

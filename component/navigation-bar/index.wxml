@@ -1,0 +1,23 @@
+<view class="navigation_bar bgc-fe2544" style="{{'height: ' + navigationBarAndStatusBarHeight}}">
+    <view style="{{'height:' + statusBarHeight}}"></view>
+    <image class="bci" mode="widthFix" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707210019HFLF'}}">
+    </image>
+    <view class="menu_box" style="{{'height:' + navigationBarHeight}}; position: relative;">
+        <image mode="widthFix" src="/static/Group532.png"></image>
+        <view>福田区</view>
+        <!-- <image mode="widthFix" style="width: 24rpx; margin-left: 5rpx;" src="/static/Group300.png"></image> -->
+		<view class="search_input">
+			<image bindtap="inputTap" class="fdj" src="/static/Group291.png"></image>
+			<input disabled type="text" placeholder="找吃喝玩乐~"  placeholder-style="font-size:24rpx;color:#999;" style="background-color: #fff;" bindtap="inputTap" />
+		</view>
+		<view style="{{'width:' + menuButtonWidth}}; position: absolute; right: 14rpx;"></view>
+    </view>
+</view>
+<view wx:if="{{snfixed}}" class="snfixed" style="{{'height: ' + navigationBarAndStatusBarHeight}}">
+    <view style="{{'height:' + statusBarHeight}}"></view>
+    <view class="search_input" style="{{'height:' + navigationBarHeight}}">
+        <image class="fdj" src="/static/Group291.png"></image>
+        <input disabled type="text" placeholder="找吃喝玩乐~" placeholder-style="font-size:24rpx;color:#999;" style="background-color: #F5F5F5; width: 386rpx;" bindtap="inputTap" />
+        <!-- <text class="iconfont iconsm sm"></text> -->
+    </view>
+</view>

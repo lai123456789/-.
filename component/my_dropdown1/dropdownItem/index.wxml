@@ -1,0 +1,7 @@
+<view wx:if="{{showIndex==0}}" style="width: 100vw">
+    <view wx:for="{{distance}}" wx:key="text" wx:for-index="index1" wx:for-item="item1">
+        <view class="my_dropdown_cell" catchtap="getDistance" data-value="{{item1.value}}" data-text="{{item1.text}}" data-index="{{index1}}">
+            <view class=" my_dropdown_cell_item {{distanceIndex==index1?'active':''}}">{{item1.text}}</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "navigation-bar": "/component/navigation-bar/index",
+    "van-empty": "/common/vant/empty/index",
+    "waterfallFlow": "/component/waterfallFlow/waterfallFlow",
+    "my_dropdown": "/component/my_dropdown/my_dropdown",
+	"van-popup": "/common/vant/popup/index"
+  },
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true
+}

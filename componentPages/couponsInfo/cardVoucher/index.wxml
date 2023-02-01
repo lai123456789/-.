@@ -1,0 +1,91 @@
+<wxs module="tools">
+  var includes = function (array, searchElement) {
+    return array.indexOf(searchElement) !== -1
+  }
+  module.exports = {
+    includes:includes
+  }
+</wxs>
+<view>
+	<van-tabs active="{{ active }}" bindchange="onChange" color="#F93A4A" title-active-color="#F93A4A"
+		animated="true">
+		<van-tab wx:for="{{tabTitle}}" wx:for-index="index" wx:key="index" title="{{ item }}" name="{{ index + 1 }}">
+			<van-empty wx:if="{{voucherList.length==0}}" description="空空如也~" />
+			<view wx:else class="mb30">
+				<view class="tiyanquanInfo {{ tools.includes([2,3], itemList.status)? 'bggray' : ''}} "
+					wx:for="{{voucherList}}" wx:for-index="indexList" wx:for-item="itemList" wx:key="indexList">
+					<view bindtap="goInfo" data-info="{{itemList}}" data-number="{{ itemList.storeN }}" data-coupontype="{{itemList.couponType}}"
+					 class="allTopbg" 
+					 style="opacity: {{ itemList.status===1?'1': '0.6' }};background-image:url('{{ itemList.couponType === 1 ? API_ROOT+'/1/accessory/redirect?accessory_no=XL20220712150026TSPE': API_ROOT+'/1/accessory/redirect?accessory_no=XL20220712145845EHJM' }}')">
+						<view class="allTopbgLeft">
+							<view style="text-align: center;">
+								<view>
+									<text style="font-size: 36rpx; font-weight: bold; color: #FFFFFF;">￥</text>
+									<text
+										style="font-size: 80rpx; font-weight: 800; color: #FFFFFF;">{{itemList.amount}}</text>
+								</view>
+								<!-- 体验券 -->
+								<view wx:if="{{ itemList.couponType === 1 }}" class="f22 wei5 cf">无门槛</view>
+								<!-- 代金券 -->
+								<view wx:else class="f22 wei5 cf">满{{ itemList.minAmount }}元可用</view>
+							</view>
+						</view>
+						<view class="allTopbgRight p-rela">
+							<view style="width: 250rpx;">
+								<!-- 体验券 -->
+								<block wx:if="{{ itemList.couponType === 1 }}">
+									<view class="flex wei line-1 {{itemList.status === 1 ? 'c3' : 'c6'}}" style="width: 292rpx;">{{ itemList.name }}</view>
+									<view style="margin: 14rpx 0;font-size: 20rpx;font-weight: 500;color: #F93A4A;">
+										仅限购买代金券可用
+									</view>
+									<view style="font-size: 18rpx;font-weight: 500;color: #999999;">
+										{{itemList.startDate}} 至 {{itemList.endDate}}
+									</view>
+								</block>
+								<!-- 代金券 -->
+								<block wx:else>
+									<view class="flex items-center wei5">
+										<image src="{{itemList.storeLogo}}" style="width: 30rpx; height: 30rpx; margin-right: 8rpx">
+										</image>
+										<text class="line-1 flex-1">{{itemList.storeName}}</text>
+									</view>
+									<view class="line-1  wei  {{itemList.status === 1 ? 'c3' : 'c6'}}" style="width: 292rpx; margin: 14rpx 0;">
+										{{ itemList.name }}
+									</view>
+									<view style="font-size: 20rpx; display: flex; justify-content: space-between;">
+										<view>
+											<text class="c9">可使用</text>
+											<text class="ml5">{{itemList.useLimitNum}}张</text>
+										</view>
+										<view>
+											<text>金额：</text>
+											<text>￥{{itemList.buyAmount}}</text>
+										</view>
+									</view>
+								</block>
+							</view>
+							<view wx:if="{{ itemList.status === 1 }}">
+								<image src="/static/goUse.png" style="width: 108rpx; height: 50rpx;" catchtap="goUse"
+								 data-number="{{ itemList.number }}" data-sn="{{itemList.sn}}" data-coupontype="{{itemList.couponType}}">
+								</image>
+								<view
+									style="margin-top: {{ itemList.remainingTimeNum > 1 ? '40rpx' : '18rpx' }}; font-size: 20rpx;font-weight: 500;color: #F93A4A;">
+									<view wx:if="{{ itemList.remainingTimeNum > 1 }}">{{itemList.remainingTimeNum}}天后过期
+									</view>
+									<view wx:else class="t-c">
+										<view>今天</view>
+										<view>23：59过期</view>
+									</view>
+								</view>
+							</view>
+							<view wx:else>
+								<image wx:if="{{ itemList.status === 2 }}" src="/static/yiUse.png" style="width: 110rpx; height: 86rpx;"></image>
+								<image wx:if="{{ itemList.status === 3 }}" src="/static/yiPass.png" style="width: 110rpx; height: 86rpx;"></image>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</van-tab>
+	</van-tabs>
+</view>

@@ -1,0 +1,13 @@
+<!--pages/appointment/people/index.wxml-->
+<view style="height: 80rpx"></view>
+<view hidden="{{consumerCount <= 0}}" style="min-height: {{mineHeight - 330}}rpx">
+  <van-grid column-num="4" border="{{false}}" square gutter="60rpx">
+    <van-grid-item content-class="item-content-class" use-slot wx:for="{{ consumerCount }}" wx:key="index" link-type bindtap="_toDetail" data-index="{{index + 1}}">
+      {{index + 1}}
+    </van-grid-item>
+    <van-grid-item wx:if="{{consumerCount>0}}" content-class="item-content-class" use-slot link-type bindtap="_toDetail"
+      data-index="{{consumerCount}}">
+      更多
+    </van-grid-item>
+  </van-grid>
+</view>

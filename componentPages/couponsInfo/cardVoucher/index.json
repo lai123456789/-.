@@ -1,0 +1,9 @@
+{
+	 "enablePullDownRefresh": true,
+	"usingComponents": {
+		"van-tab": "/common/vant/tab/index",
+		"van-tabs": "/common/vant/tabs/index",
+		"van-empty": "/common/vant/empty/index"
+	},
+	"navigationBarTitleText": "我的卡券"
+}

@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "就餐人数",
+  "usingComponents": {
+    "van-button": "../../../common/vant/button/index",
+    "van-grid": "../../../common/vant/grid/index",
+    "van-grid-item": "../../../common/vant/grid-item/index"
+  }
+}

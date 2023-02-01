@@ -1,0 +1,22 @@
+.gold_popup {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    z-index: 3;
+}
+
+.gold_img {
+    position: absolute;
+    top: 259rpx;
+    left: 90rpx;
+    height: 661rpx;
+    width: 571rpx;
+}
+
+.gold_text {
+    position: absolute;
+    font-size: 72rpx;
+    font-weight: bold;
+    top: 380rpx;
+    color: #b8264a;
+}

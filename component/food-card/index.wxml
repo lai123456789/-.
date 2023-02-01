@@ -1,0 +1,33 @@
+<!--component/food-card/index.wxml-->
+<wxs src="../../utils/parseUtil.wxs" module="tools"></wxs>
+<view class="view-tab-food-choices-cell row-align-items-flex-end">
+  <img-loader img-url="{{food.link_identify}}" custom-class="image-tab-food-choices-cell-food"></img-loader>
+  <view class="view-tab-food-choices-cell-info-bg">
+    <label class="view-tab-food-choices-cell-info-name text-overflow">{{food.food_name}}</label>
+    <view class="view-tab-food-choices-cell-info-number-rate">
+      <label style="margin-right: 10rpx;">销量: {{food.sell_count}}</label>
+      <label>评分: {{tools.toFix(food.praise * 1)}}</label>
+    </view>
+    <view class="row-center p-rela" style="margin: 8rpx 0;" wx:if="{{food.consumer_price != '0.00'}}">
+		<image src="/static/xiaofeiquanBg.png" style="width: 94rpx;height: 38rpx;"></image>
+		<text class="f20 p-abso wei" style="color: #492D29; left: 6rpx;">￥{{food.consumer_price}}</text>
+		<image src="/static/xiaofeiquan.png" style="width: 128rpx;height: 38rpx;margin-left: -8rpx;"></image>
+      <!-- <van-icon size="26rpx" name="label-o" color="{{color}}" />
+      <view class="view-tab-food-choices-cell-info-flag text-overflow" wx:for="{{food.label_array}}" wx:for-item="l_item" wx:for-index="l_index" wx:key="l_index">
+        {{l_item}}
+      </view> -->
+    </view>
+    <view class="view-tab-food-choices-cell-info-price-flag-bg">
+      <label class="view-tab-food-choices-cell-info-price active-color">
+        {{food.amount_desc}}{{food.selling_price}}
+        <!-- <text class="price-start">起</text> -->
+      </label>
+      <label wx:if="{{withdrawalSetting.h_price_switch == 'ON' && food.h_price * 1 != food.selling_price * 1}}" class="view-tab-food-choices-cell-info-price" style="color: rgba(218, 0, 0, 1);">
+        <image src="/images/icon_h_price.png" class="hprice-image"></image>
+        <text>{{food.amount_desc}}{{food.selling_price}}</text> <!-- h_price -->
+      </label>
+    </view>
+  </view>
+  <view class="image-tab-food-cell-select soldout" wx:if="{{food.status=='SOLDOUT'}}">已售罄</view>
+  <view class="image-tab-food-cell-select background-color" wx:else bindtap="_clickFood" data-item="{{food}}">选规格</view>
+</view>

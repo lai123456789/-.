@@ -1,0 +1,10 @@
+{
+	"usingComponents": {
+		"van-cell": "/common/vant/cell/index",
+		"van-cell-group": "/common/vant/cell-group/index",
+		"van-action-sheet": "/common/vant/action-sheet/index",
+		"van-radio": "/common/vant/radio/index",
+		"van-radio-group": "/common/vant/radio-group/index"
+	},
+	"navigationBarTitleText": "申请退款"
+}

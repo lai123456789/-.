@@ -1,0 +1,30 @@
+.tiyanquanInfo {
+	margin-top: 30rpx;
+	/* margin-left: 30rpx; */
+	display: flex;
+	justify-content: center;
+}
+
+.tiyanquanInfo .allTopbg {
+	/* background-image: url('/static/tiyanquanDetailBg.png')  体验券背景*/
+	/* tiyanquanDetailBg2.png  代金券背景  后面改成 style 动态渲染*/
+	background-size: 100%;
+	width: 690rpx;
+	height: 198rpx;
+	display: flex;
+}
+
+.tiyanquanInfo .allTopbg .allTopbgLeft {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 207rpx;
+	overflow: hidden;
+}
+
+.tiyanquanInfo .allTopbg .allTopbgRight {
+	flex: 1;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}

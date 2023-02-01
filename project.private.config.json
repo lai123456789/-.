@@ -1,0 +1,43 @@
+{
+    "setting": {
+        "compileHotReLoad": true
+    },
+    "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+    "libVersion": "2.25.4",
+    "condition": {
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "扫码",
+                    "pathName": "pages/qr/qr",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "点餐台",
+                    "pathName": "pages/choose/food/index",
+                    "query": "menuConsoleN=MCN20220711145716ZTDU",
+                    "scene": null
+                },
+                {
+                    "name": "消费金bar页",
+                    "pathName": "pages/gold/gold",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "购买代金券",
+                    "pathName": "/componentPages/buyCashCoupon/buyCashCoupon",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "点餐台扫码下单结算支付",
+                    "pathName": "pages/choose/orderTablePay/orderTablePay",
+                    "query": "",
+                    "scene": null
+                }
+            ]
+        }
+    }
+}

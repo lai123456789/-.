@@ -1,0 +1,186 @@
+<view class="p3" style="margin-bottom: 300rpx;">
+	<view class="bf bs16 p3 mb20">
+		<view class="mb50">
+			<view style="height: 166rpx; width: 100%;" class="flex items-center">
+				<image src="{{dataInfo.bannerList[0]}}" style="height: 184rpx; width: 184rpx;"></image>
+				<view class="flex justify-between p-rela flex-1 ml20">
+					<view class="flex-1">
+						<view class="flex items-center wei5">
+							<image src="{{dataInfo.storeLogo || dataInfo.logo}}"
+								style="width: 30rpx; height: 30rpx; margin-right: 8rpx">
+							</image>
+							<view style="width: 400rpx;" class="line-1">{{dataInfo.storeName || dataInfo.name}}</view>
+						</view>
+						<view class="line-1  wei  c0" style="margin: 8rpx 0;">
+							{{vouchersInfo.name}}
+						</view>
+						<view class="cf93 f24">购买预计返{{consumer_amount}}消费金</view>
+						<view class="wei f32 c3 t-r">￥{{ought_amount}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="flex justify-between items-center mb40">
+			<view class="c3">数量</view>
+			<view class="flex justify-between">
+				<image src="/static/jian.png" style="width: 50rpx; height: 50rpx; margin-right: 8rpx;" bindtap="jian">
+				</image>
+				<input value="{{num}}" style="width: 86rpx;" type="number" class="f-g-1 f36 t-c" bindinput="minput" />
+				<image src="/static/jia.png" style="width: 50rpx; height: 50rpx; margin-left: 8rpx;" bindtap="add">
+				</image>
+			</view>
+		</view>
+		<view class="flex justify-between mb40">
+			<view class="flex items-center">
+				<image src="/static/quan2.png" style="width: 40rpx; height: 40rpx;"></image>
+				<text class="c3 m-lr6">优惠券抵扣</text>
+				<text wx:if="{{availableCoupons.length>0 && radio != -1}}"
+					style="padding: 0 2rpx; border: 2rpx solid #F93A4A;" class="f20 cf93 ml15">已选择最佳优惠</text>
+			</view>
+			<view class="c9 flex items-center" bindtap="selectCard">
+				<view wx:if="{{availableCoupons.length===0}}">暂无可用</view>
+				<view wx:elif="{{radio == -1}}">不选择体验券</view>
+				<view wx:else class="f36 cf93 m-lr8">-￥{{selectCoupon.amount}}</view>
+				<image src="/static/turnRight.png" style="width: 30rpx; height: 30rpx;"></image>
+			</view>
+		</view>
+		<view class="flex justify-between mb40 border-bottom-2-e pb50">
+			<view class="flex items-center">
+				<image src="/static/jin2.png" style="width: 40rpx; height: 40rpx;"></image>
+				<text class="c3 m-lr6">是否使用消费金</text>
+				<text class="cf93">(余额：{{currency?currency:"0"}})</text>
+			</view>
+			<view class="psmsc1 f-x-bt bf border1 c9">
+				<view class="psms1 f-c f24 wei5 {{active==1?'active':''}}" bindtap="usePreferential" data-index="1">否
+				</view>
+				<view class="psms1 f-c f24 wei5 {{active==2?'active':''}}" bindtap="usePreferential" data-index="2">是
+				</view>
+			</view>
+		</view>
+		<view class="t-r mb15">
+			<text class="f24 c3">实付</text>
+			<text class="f26 cf93">￥</text>
+			<text class="f40 cf93">{{practical_amount}}</text>
+		</view>
+		<view class="t-r">
+			<text class="f26 c3">支付后立返</text>
+			<text class="f26 cf93">{{consumer_amount}}</text>
+			<text class="f26 c3">消费金</text>
+			<image src="/static/question.png" style="width: 24rpx; height: 24rpx;" bindtap="goRules"></image>
+		</view>
+	</view>
+	<view class="bf p3 bs16">
+		<view class="c3 f32 wei mb15">购买须知</view>
+		<view class="c3 f26 mt20">预约信息：</view>
+		<view class="f26 c9">· {{dataInfo.appointInfo}}</view>
+		<view class="c3 f26 mt20">不适用范围：</view>
+		<view class="f26 c9">
+			<block wx:if="{{dataInfo.unavailableLimit.length > 0}}">
+				· 除<text wx:for="{{dataInfo.unavailableLimit}}" wx:key="index"
+					class="mr10">{{item}}{{index+1 === dataInfo.unavailableLimit.length?'': '、'}}</text>外全场通用
+			</block>
+			<text wx:else>全场通用</text>
+		</view>
+		<view class="c3 f26 mt20">使用规则：</view>
+		<block wx:if="{{dataInfo.useRules.length > 0}}">
+			<view class="f26 c9 mb15" wx:for="{{dataInfo.useRules}}" wx:key="index">· {{item}}</view>
+		</block>
+		<text wx:else class="f26 c9">无</text>
+	</view>
+</view>
+<view class="foot-fixed-area bf p253">
+	<view class="mb15">
+		<van-checkbox value="{{ checked }}" bind:change="onChange" checked-color="#f93a4a" icon-size="24rpx">
+			<text class="f24 c9">我已阅读并同意</text>
+			<text class="f24 c3">《商家购买协议》</text>
+		</van-checkbox>
+	</view>
+	<view class="justify-between flex items-center">
+		<view>
+			<text class="f26 c3">实付</text>
+			<text class="f24 cf93">￥</text>
+			<text class="f40 cf93">{{practical_amount}}</text>
+		</view>
+		<view style="width: 384rpx; ">
+			<!-- 已绑定手机号 直接购买 -->
+			<button class="clearbtn" wx:if="{{isPhoneYes}}">
+				<image src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205741SNKQ'}}" style="width: 384rpx; height: 80rpx;" bindtap="goBuy"></image>
+			</button>
+			<!-- 未绑定手机号 先绑手机号 才能购买 -->
+			<button wx:else class="clearbtn"  open-type="getPhoneNumber" bindgetphonenumber="getphonenumber">
+				<image src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205741SNKQ'}}" style="width: 384rpx; height: 80rpx;"></image>
+			</button>
+		</view>
+	</view>
+</view>
+<van-action-sheet show="{{ show }}" title=" " bind:close="onClose" close-on-click-overlay="{{false}}">
+	<Tabs mode="widthFix" Tabs="{{Tabs}}" bindTabsChange="handleTabsChange" attribute="{{ attribute }}"></Tabs>
+	<view class="mt60 mb150 o-y-s" style="height: 600rpx;">
+		<van-empty wx:if="{{couponsList.length===0}}" description="没有可用的优惠券" />
+		<!-- 单选（不可叠加） 规则  wx:if="{{ !isSuperposition }}"-->
+		<van-radio-group value="{{ radio }}">
+			<view class="allTopbg mb20 {{ item.isUse ? '' : 'bggray' }}" bindtap="onChangeRadio" wx:key="index"
+				data-index="{{index}}" style="margin: 0 30rpx 30rpx 30rpx; opacity: {{ item.isUse?'1': '0.6' }};background-image:url('{{ API_ROOT+'/1/accessory/redirect?accessory_no=XL20220712144850IKCW' }}');"
+				wx:for="{{ couponsList }}" wx:key="index">
+				<view class="allTopbgLeft">
+					<view style="text-align: center; width: 100%;">
+						<view>
+							<text style="font-size: 36rpx; font-weight: bold; color: #FFFFFF;">￥</text>
+							<text style="font-size: 80rpx; font-weight: 800; color: #FFFFFF;">{{item.amount}}</text>
+						</view>
+						<view class="f24 cf wei5">购买代金券可用</view>
+					</view>
+				</view>
+
+				<view class="allTopbgRight">
+					<view>
+						<view class="f28 wei c3">{{item.amount}}元体验劵</view>
+						<view class="f20 cf93" style="margin: 14rpx 0;">
+							<text wx:if="{{item.status===2}}">已使用</text>
+							<text wx:elif="{{item.type===1}}">
+								<text wx:if="{{item.outTime === 0}}">今天23:59:59过期</text>
+								<text wx:else>{{item.outTime}}天后过期</text>
+							</text>
+							<text wx:else>已过期</text>
+						</view>
+						<view class="f20 c9">可用张数 {{item.usableNum}}张</view>
+					</view>
+					<view>
+						<van-radio name="{{ index }}" checked-color="#f93a4a" wx:if="{{item.isUse}}"></van-radio>
+						<van-radio checked-color="#f93a4a" disabled wx:else></van-radio>
+					</view>
+				</view>
+			</view>
+		</van-radio-group>
+		<!-- 多选（叠加使用） 规则  暂定不可多选：  体验券无法多选，代金券是线下模式-->
+		<!-- <van-checkbox-group wx:else value="{{ result }}" bind:change="onChangeCheckbox">
+			<view class="allTopbg mb20 {{ item.isUse ? '' : 'bggray' }}"
+				style="margin: 0 30rpx 30rpx 30rpx; opacity: {{ item.isUse?'1': '0.6' }}" wx:for="{{ couponsList }}"
+				wx:key="index">
+				<view class="allTopbgLeft">
+					<view style="text-align: center; width: 100%;">
+						<view>
+							<text style="font-size: 36rpx; font-weight: bold; color: #FFFFFF;">￥</text>
+							<text style="font-size: 80rpx; font-weight: 800; color: #FFFFFF;">10</text>
+						</view>
+						<view class="f24 cf wei5">购买代金券可用</view>
+					</view>
+				</view>
+
+				<view class="allTopbgRight">
+					<view>
+						<view class="f28 wei c3">10元体验劵</view>
+						<view class="f20 cf93" style="margin: 14rpx 0;">30天后过期</view>
+						<view class="f20 c9">可用张数 1张</view>
+					</view>
+					<view>
+						<van-checkbox name="{{ index }}" checked-color="#f93a4a"></van-checkbox>
+					</view>
+				</view>
+			</view>
+		</van-checkbox-group> -->
+	</view>
+	<view class="foot-fixed-area t-c mb20" wx:if="{{couponsList.length>0 && selectIndex == 0}}">
+		<image src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205930NJMJ'}}" style="width: 384rpx; height: 94rpx;" bindtap="goSure"></image>
+	</view>
+</van-action-sheet>

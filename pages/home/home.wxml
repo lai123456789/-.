@@ -1,0 +1,78 @@
+<navigation-bar snfixed="{{snfixed}}"></navigation-bar>
+<!-- 用户是否已经绑定手机号 如果查询account/info接口有返回mobile字段 手机号了，则代表老用户，否则是新用户（弹窗显示体验券领取） -->
+<view class="tiyanquanDiong" style="position: relative" wx:if="{{ !isPhoneYes && experienceVoucherData.length > 0 }}">
+	<van-popup show="{{!isPhoneYes}}" close-on-click-overlay="true"
+		custom-style="border-radius: 32rpx; background: transparent; overflow: hidden">
+		<image bindtap="showPopup"
+			style="position: absolute; z-index: 100; width: 37rpx; height: 37rpx; right: 0rpx; top: 136rpx;"
+			mode="widthFix" src="/static/xfj_close.png"></image>
+		<view style="text-align: center; margin-top: 216rpx;">
+			<image style="width: 626rpx; height: 534rpx;" mode="widthFix" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707210127JKNA'}}"></image>
+			<view style="height: {{ experienceVoucherData.length > 1 ? '200rpx' : '146rpx' }}" class="listCenter">
+				<view class="centerBg"  wx:for="{{experienceVoucherData}}" wx:key="id"
+				style="background-image:url('{{ API_ROOT+'/1/accessory/redirect?accessory_no=XL20220712145051AJZN' }}')">
+					<view class="centerLeft">
+						<view class="cl-1">{{ item.amount }}元体验券</view>
+						<view class="cl-2">购买代金券可用</view>
+					</view>
+					<view class="centerRight">
+						<text style="font-size: 40rpx;font-weight: bold;color: #E32613;">￥</text>
+						<text style="font-size: 72rpx;font-weight: 800;color: #E32613;">{{ item.amount }}</text>
+					</view>
+				</view>
+			</view>
+			<!-- 用户已经绑定手机号？  可以直接领取 -->
+			<button wx:if="{{isPhoneYes}}" class="lingquBtn" bindtap="goLook"
+			style="background-image:url('{{ API_ROOT+'/1/accessory/redirect?accessory_no=XL20220712150200NVNU' }}')"></button>
+			<!-- 用户未绑定手机号？  领取前需要绑定 -->
+			<button wx:else class="lingquBtn" open-type="getPhoneNumber" bindgetphonenumber="getphonenumber"
+			style="background-image:url('{{ API_ROOT+'/1/accessory/redirect?accessory_no=XL20220712150200NVNU' }}')"></button>
+		</view>
+	</van-popup>
+</view>
+
+<!-- 轮播图 -->
+<view class="swiper_box mt40">
+	 <swiper autoplay indicator-dots circular style="height: 320rpx;" indicator-active-color="#EEE">
+	        <swiper-item wx:for="{{bannerList}}" data-id="{{index}}" wx:key="index">
+	            <view>
+					 <!-- mode="widthFix" -->
+	                <image style="width: 690rpx; border-radius: 16rpx;height: 320rpx;" src="{{item}}"></image>
+	            </view>
+	        </swiper-item>
+	    </swiper>
+</view>
+<!-- 分类导航 -->
+<!-- <view class="home_category">
+	<navigator class="cates_item" wx:for="{{catesList}}" wx:key="name"
+		url="/componentPages/category/category?title={{item.name}}&&number={{item.number}}">
+		<image src="{{item.icon}}"></image>
+		<view>{{item.name}}</view>
+	</navigator>
+</view> -->
+<!-- 广告banner -->
+<!-- <view class="home_banner">
+	<image mode="widthFix" class="banner_left" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205842ELRZ'}}"></image>
+	<view class="banner_right">
+		<image mode="widthFix" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205404FJDN'}}"></image>
+		<image mode="widthFix" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205725KRQS'}}"></image>
+	</view>
+</view> -->
+<!-- 商户展示 -->
+<view class="card {{isFixedTop?'fixed':''}}" style="top: {{isFixedTop?navigationBarAndStatusBarHeight+'px':''}};"
+	id="navbar">
+	<my_dropdown id="my_dropdown" selectionList="{{selectionList}}" foodItem="{{foodItem}}" foodList="{{foodList}}"
+		bindshowmasklayer="showMaskLayer" bindgetdistancechange="_getDistance" bindgetpercost="_getPerCost"
+		bindgetsortdata="_getsortdata" bindgetfooddata="_getFoodData" fixedHeight='{{fixedHeight}}' bindtap="scrollTo">
+	</my_dropdown>
+</view>
+<view class="card" wx:if="{{isFixedTop}}"></view>
+<view class="page_1">
+	<waterfallFlow id="waterfallFlow" leftData="{{leftArr}}" rightData="{{rightArr}}" middleGap="{{ middleGap }}"
+		bind:clickDom='test' longitude="{{longitude}}">
+	</waterfallFlow>
+	<view class="f-c" hidden="{{loading}}">正在加载中...</view>
+	<van-empty wx:if="{{leftArr.length==0&&loading==true}}" description="空空如也~" />
+</view>
+<view class="zzc" hidden="{{zzc_hidden}}" bindtap="closeDropdown">
+</view>

@@ -1,0 +1,38 @@
+.psmsc1 {
+	height: 66rpx;
+	padding: 0 6rpx;
+	border-radius: 45rpx;
+}
+
+.psms1 {
+	border-radius: 50%;
+	height: 56rpx;
+	width: 60rpx;
+}
+
+.active {
+	color: #fff;
+	background-color: #f93a4a;
+}
+
+.allTopbg {
+	background-size: 100%;
+	/* width: 690rpx; */
+	height: 198rpx;
+	display: flex;
+}
+
+.allTopbg .allTopbgLeft {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 207rpx;
+}
+
+.allTopbg .allTopbgRight {
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 30rpx;
+}

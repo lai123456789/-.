@@ -1,0 +1,6 @@
+{
+	"usingComponents": {
+		"van-empty": "/common/vant/empty/index"
+	},
+	"navigationBarTitleText": "收藏"
+}

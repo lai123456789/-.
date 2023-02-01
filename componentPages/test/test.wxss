@@ -1,0 +1,56 @@
+@-webkit-keyframes rowup {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: translate3d(0, -200px, 0);
+    transform: translate3d(0, -200px, 0);
+  }
+}
+
+@keyframes rowup {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(0, -230rpx, 0);
+    transform: translate3d(0, -230rpx, 0);
+  }
+}
+page{
+    background-color: pink;
+}
+@keyframes myanimation {
+  from {
+    top: 0rpx;
+  }
+  to {
+    top: -200rpx;
+  }
+}
+.demo-list {
+  width: 209rpx;
+  margin: 20px auto;
+  position: relative;
+  height: 40rpx;
+  overflow: hidden;
+  border-radius: 30rpx;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.demo-list .rowup {
+  -webkit-animation: rowup 5s linear infinite normal;
+  animation: rowup 5s linear infinite normal;
+  position: relative;
+}
+.item {
+  color: #333333;
+  opacity: 0.8;
+  font-size: 18rpx;
+  padding-left: 10rpx;
+  width: 190px;
+  height: 25px;
+}

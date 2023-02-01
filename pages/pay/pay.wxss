@@ -1,0 +1,113 @@
+/* pages/pay/pay.wxss */
+.img {
+  width: 88rpx;
+  height: 88rpx;
+  margin-right: 50rpx;
+}
+
+.fddfdd {
+  width: 600rpx;
+  height: 170rpx;
+  margin: 0 75rpx 44rpx;
+}
+
+page {
+  background-color: #fff;
+}
+
+.mdps {
+  color: #e9e9e9;
+  font-size: 32rpx;
+}
+
+.psmsc1 {
+  height: 66rpx;
+  padding: 0 6rpx;
+  border-radius: 45rpx;
+}
+
+.psms1 {
+  border-radius: 66rpx;
+  height: 50rpx;
+  width: 60rpx;
+}
+
+.cfc {
+  color: #ff5d0c;
+}
+
+.sjimg {
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.mdbd {
+  border-radius: 40rpx 40rpx 0 0;
+}
+
+.mdbdt {
+  margin: 0 50rpx;
+}
+
+.mdinput {
+  font-size: 70rpx;
+  height: 2.9rem;
+  line-height: 2.9rem;
+  caret-color: #17e883;
+  margin-left: 13rpx;
+}
+
+.mdbdb {
+  padding: 0 50rpx;
+}
+
+.hdwith {
+  width: 100rpx;
+}
+
+
+.weui-cell:after {
+  display: block;
+}
+
+.img {
+  width: 88rpx;
+  height: 88rpx;
+  margin-right: 20rpx;
+}
+
+.last:after {
+  display: none;
+}
+
+.left0:after {
+  left: 0rpx;
+}
+
+.right30:after {
+  right: 30rpx;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0rpx;
+}
+
+.aligns {
+  align-items: flex-start;
+}
+
+.f-g-1 {
+  min-width: 140rpx;
+}
+
+.m050 {
+  margin: 0 50rpx;
+}
+
+.active {
+  color: #fff;
+  background-color: #f93a4a;
+}

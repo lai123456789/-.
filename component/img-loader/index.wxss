@@ -1,0 +1,5 @@
+/* components/img-loader/index.wxss */
+.img-loader-view {
+  overflow: hidden;
+  background-color: #EFEFEF;
+}

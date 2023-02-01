@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "img-loader": "../img-loader/index",
+    "van-popup": "../../common/vant/popup/index",
+    "van-empty": "../../common/vant/empty/index",
+    "van-image": "../../common/vant/image/index",
+    "van-icon": "../../common/vant/icon/index"
+  }
+}

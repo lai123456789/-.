@@ -1,0 +1,204 @@
+<view style="background-color: #FFF; margin-bottom: 152rpx;">
+	<view class="swiper_box" style="height: 520rpx;"> 
+	<!-- 883rpx -->
+		<swiper autoplay indicator-dots circular bindchange="bindSwiperChange">
+			<swiper-item wx:for="{{sellerInfo.bannerList}}" wx:key="*this">
+				<view class="swiper_img">
+					<image mode="widthFix" src="{{item}}"></image>
+				</view>
+			</swiper-item>
+		</swiper>
+		<view class="imgNumText f24">{{ imgNumSwiper + 1 }}/{{ sellerInfo.bannerList.length }}</view>
+		<!-- 返回按钮 -->
+		<view class="navigation-container" style="{{'height: ' + navigationBarAndStatusBarHeight+'px'}}">
+			<!--空白来占位状态栏-->
+			<view style="{{'height: ' + statusBarHeight}}"></view>
+			<!--自定义导航栏-->
+			<view class="navigation-bar" style="{{'height:' + navigationBarHeight}}">
+				<view class="navigation-buttons" style="{{'height:' + menuButtonHeight}}" bindtap="onClickBack">
+					<image src="/static/back.png" style="width: 50rpx; height:50rpx;"></image>
+				</view>
+				<view class="navigation-title" style="{{'line-height:' + navigationBarHeight}}">{{title}}</view>
+			</view>
+		</view>
+	</view>
+	<view class="section_1 p330">
+		<view style="height: 152rpx;">
+			<view class="c3 wei f36">
+				{{sellerInfo.name}}
+			</view>
+			<view class="pb0 f-y-c" style="height: 50rpx;">
+				<image mode="widthFix" style="width: 170rpx;height: 30rpx;" src="/static/5xing.png"></image>
+				<text class="f28" style="color:#F93A4A;margin-left:10rpx;">{{sellerInfo.evaluateScore}}</text>
+				<text class="p-l-20">￥{{sellerInfo.perCost}}/人</text>
+			</view>
+			<view class="f-bt f-y-c pb10" style="border-bottom: 1rpx solid #EEEEEE;">
+				<view class="c3 f26">
+					<text>口味：5</text>
+					<text class="p-l-10">环境：5</text>
+					<text class="p-l-10">服务：5</text>
+				</view>
+				<view class="c3 f28">
+					<text class="mr30 c3">{{sellerInfo.storeTypeName}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="f-bt f-y-c pb20" style="border-bottom: 1rpx solid #EEEEEE;height: 125rpx;">
+			<view>
+				<view class="c3 f26 weui-cell_input pb6" style="display: flex;">
+
+					<view wx:if="{{sellerInfo.businesStatus=='ON'&&sellerInfo.businessHours24=='OFF'}}">营业中</view>
+					<view wx:if="{{sellerInfo.businesStatus=='OFF'&&sellerInfo.businessHours24=='OFF'}}">停止营业</view>
+					<block wx:if="{{sellerInfo.businessHours24=='ON'}}">
+						<text> 24小时营业 </text>
+					</block>
+					<view wx:elseif="{{sellerInfo.businessHours24=='OFF'}}" class="f-c" style="margin-left: 20rpx;">
+						<view style="margin-left: 20rpx;" wx:for="{{sellerInfo.businessHours}}" wx:key="*this">
+							{{item.startTime}} - {{item.endTime}} </view>
+					</view>
+				</view>
+				<view class="flex f20">
+					<view class="bceee p-5-10 br2">付费停车</view>
+					<view class="bceee p-5-10 ml10 br2">开放空调</view>
+					<view class="bceee p-5-10 ml10 br2">免费Wi-Fi</view>
+					<view class="bceee p-5-10 ml10 br2">可预订</view>
+				</view>
+			</view>
+			<navigator url="/componentPages/sellerDetail/sellerDetail?number={{sellerInfo.number}}" class="c9 f28">详情
+				<image style="width: 22rpx;height: 22rpx;" src="/static/detail.png"></image>
+			</navigator>
+		</view>
+		<view class="f-bt f-y-c pb10" style="height:125rpx;">
+			<view>
+				<view class="c3 f26" style="width:446rpx">{{sellerInfo.address}}</view>
+				<!-- <view class="flex f20"> -->
+				<!-- <view class="c9" data-data="{{sellerInfo}}" bindtap="openLocation">距地铁2号线海上世界站A口步行440m</view> -->
+				<!-- </view> -->
+			</view>
+			<view class="c9 f20" style="width:130rpx;height: 70rpx;display: flex;justify-content: space-between;">
+				<view data-data="{{sellerInfo}}" bindtap="openLocation">
+					<view>
+						<image style="width:40rpx;height: 70rpx;" mode="widthFix" src="/static/ditu.png"></image>
+					</view>
+				</view>
+				<view style="border-right:0.5px solid #EEEEEE"></view>
+				<view data-mobile="{{sellerInfo.mobile}}" bindtap="clickMobile">
+					<view>
+						<image style="width:40rpx;height: 70rpx;" mode="widthFix" src="/static/dianhua.png"></image>
+					</view>
+				</view>
+
+			</view>
+		</view>
+	</view>
+	<view class="flex justify-between group_15">
+		<view class="flex-col">
+			<view class="flex-row">
+				<image
+					src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/622874095a7e3f03104413ca/624e8341303c03001117ab03/16493126438778557669.png"
+					class="image_12" />
+				<navigator url="/pages/pay/pay?number={{sellerInfo.number}}" decode="decode" class="text_19">买单
+				</navigator>
+				<text decode="decode" class="text_20">立返消费金</text>
+			</view>
+			<view class="group_18">
+				<text decode="decode" class="text_21">美点汇商家预计返 </text>
+				<text decode="decode" class="text_22" wx:if="{{typeof(sellerInfo.consumptionRatio)=='NaN'}}">10%</text>
+				<text decode="decode" class="text_22" wx:else>{{sellerInfo.consumptionRatio}}%</text>
+				<text decode="decode" class="text_23">消费金</text>
+			</view>
+		</view>
+		<image bindtap="clickPay" data-number="{{sellerInfo.number}}"
+			src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/622874095a7e3f03104413ca/624e8341303c03001117ab03/16493126442632616048.png"
+			class="image_14 image_15" />
+	</view>
+	<view class="p330" wx:if="{{daijinquanList.length>0}}">
+		<view class="flex mb20 items-center">
+			<image src="/static/quan.png" style="width: 34rpx; height: 34rpx;"></image>
+			<view class="c3 wei f28 m-lr8">代金券</view>
+		</view>
+		<view class="border-bottom-2-e pb20">
+			<view bindtap="goInfo" data-number="{{ item.number }}" class="daijinquanBg flex items-center justify-around mb20 p03" 
+			style="background-image:url('{{ API_ROOT+'/1/accessory/redirect?accessory_no=XL20220712145526AADP' }}');"
+			wx:for="{{ daijinquanList }}" wx:key="index">
+				<view>
+					<view class="c3 f28 line-1" style="width: 500rpx;">{{item.name}}</view>
+					<view class="flex items-center">
+						<text class="f36 wei cf93">￥{{item.buyAmount}}</text>
+						<text class="m01 t-d-l c9 f28">￥{{item.amount}}</text>
+						<view style="background: #FFEBEB; padding: 0 6rpx;" class="f26 cf93">{{item.discount}}折</view>
+						<view class="cf93 f20 m01">仅剩{{item.remainingCount}}张</view>
+					</view>
+					<view class="c9 f20">活动时间：{{item.startTime}}<text class="m-lr4">至</text>{{item.endTime}}</view>
+				</view>
+				<view class="flex flex-col justify-around items-center" style="height: 100%; padding: 20rpx 0;">
+					<image catchtap="goQianggou" data-vouchers="{{item}}" src="{{item.remainingTimeNum > 0 ? API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205914TWOQ' : '/static/miaosha.png'}}" style="width: 106rpx; height: 54rpx;"></image>
+					<view class="f20 cf93 flex items-center payCountDown">
+						<text class="m-lr6">剩余</text> 
+						<!-- 超过24小时 显示天数 -->
+						<block wx:if="{{ item.remainingTimeNum > 0 }}">
+							<text>{{item.remainingTimeNum}}天</text>
+						</block>
+						<!-- 小于24小时内，显示时分秒00:00:00格式 -->
+						<block wx:else>
+							<van-count-down time="{{ item.timeStamp }}"  bind:finish="finish"/>
+						</block>
+					</view>
+					<view class="c9 f20">已售{{item.receivedCount}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- <view class="flex-col group_19">
+        <image src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/622874095a7e3f03104413ca/624e8341303c03001117ab03/16493126442998893276.png" class="image_16" />
+        <view class="bottom-group flex justify-center view_2">
+            <text decode="decode" class="text_24">优惠</text>
+            <text decode="decode" class="text_25">评价</text>
+            <text decode="decode" bindtap="toDetail" class="text_26">详情</text>
+            <text decode="decode" bindtap="toRecommend" class="text_27">推荐</text>
+        </view>
+    </view> -->
+	<view class="flex-col group_43 store_detail">
+		<text decode="decode">商家展示</text>
+		<view class="flex-col items-center group_44">
+			<image mode="widthFix" wx:for="{{sellerInfo.environmentPhotos}}" wx:key="*this" src="{{item}}"
+				class="image_37" />
+		</view>
+	</view>
+	<view class="recommend bf">
+		<view class="f32 wei p332">相关推荐</view>
+		<waterfallFlow leftData="{{leftArr}}" rightData="{{rightArr}}" middleGap='{{ middleGap }}' bind:clickDom='test'
+			longitude="{{longitude}}">
+		</waterfallFlow>
+	</view>
+	<!-- <custom-tab-bar></custom-tab-bar> -->
+	<!-- 消费金弹窗 -->
+	<!-- <view class="xfj_popup f-c-c" hidden="{{!xfjpopup}}">
+        <view class="xfj_text">
+            {{consumptionGold}}
+        </view>
+        <image mode="widthFix" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707210108UUTQ'}}"></image>
+        <image class="xfj_btn" mode="widthFix" bindtap="goGold" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707210052APKD'}}"></image>
+        <image bindtap="closePopup" style="height:96rpx;width:47rpx" mode="widthFix" src="/static/xfj_close.png"></image>
+    </view>
+    <view class="zzc" hidden="{{zzc_hidden}}">
+    </view> -->
+</view>
+<!-- <view class="foot-fixed-area bf flex justify-around items-center p20" hidden="{{ showTop }}">
+	<view class="t-c">
+		<image src="/static/pingjia.png" style="width: 44rpx; height: 44rpx;"></image>
+		<view class="f22" style="color: #302B53;">评价</view>
+	</view>
+	<view class="t-c">
+		<button class="clearbtn f22 wei4" style="color: #302B53;" open-type="share">
+			<image src="/static/fenxiang.png" style="width: 44rpx; height: 44rpx;"></image>
+			<view>分享</view>
+		</button>
+	</view>
+	<view class="t-c">
+		<button class="clearbtn f22 wei4" style="color: #302B53;" bindtap="collect" >
+			<image src="/static/shoucang.png" style="width: 44rpx; height: 44rpx;"></image>
+			<view>收藏</view>
+		</button>
+	</view>
+</view> -->

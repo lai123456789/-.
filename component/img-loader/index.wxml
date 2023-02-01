@@ -1,0 +1,9 @@
+<!--components/img-loader/index.wxml-->
+<!-- showImage -->
+<view class="custom-class img-loader-view fade-in" wx:if="{{showImage}}" style="background: none;">
+  <image style="width: 100%;height: 100%;" mode="{{modeVal}}" src="{{imgUrl}}" lazy-load="{{true}}"></image>
+</view>
+<view class="custom-class img-loader-view row-center-center fade-in" wx:else>
+  <image style="max-width: 100rpx;max-height: 100rpx;width: 100%;height: 100%;" mode="{{mode}}"
+    src="/images/loading-2.gif" lazy-load="{{true}}"></image>
+</view>

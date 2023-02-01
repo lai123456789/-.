@@ -1,0 +1,7 @@
+{
+	"usingComponents": {
+		"van-cell": "/common/vant/cell/index",
+		"van-cell-group": "/common/vant/cell-group/index"
+	},
+	"navigationBarTitleText": "帮助中心"
+}

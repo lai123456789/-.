@@ -1,0 +1,244 @@
+<!--pages/store/foodChoices/foodChoices.wxml-->
+<wxs src="../../../utils/parseUtil.wxs" module="tools"></wxs>
+<!-- 遮罩 -->
+<!-- 规格数量选择 -->
+<van-popup show="{{ showPsvPopup }}" position="bottom" bind:close="onClosePsvPopup" z-index="999" closeable="true" round="true"
+custom-style="padding-top: 68rpx">
+  <view class="" catchtap="preventBubblingEvents" style="position: relative;width: 750rpx; background: white;">
+	  <view class="row-align-items-flex-end pl30">
+	    <img-loader img-url="{{foodDetail.img_array[0]}}" custom-class="image-tab-food-choices-cell-food"></img-loader>
+	    <view class="view-tab-food-choices-cell-info-bg column-around">
+	      <label class="view-tab-food-choices-cell-info-name text-overflow">{{foodDetail.food_name}}</label>
+	      <view class="row-center p-rela" wx:if="{{foodDetail.consumer_price != '0.00'}}">
+	  		<image src="/static/xiaofeiquanBg.png" style="width: 94rpx;height: 38rpx;"></image>
+	  		<text class="f20 p-abso wei" style="color: #492D29; left: 6rpx;">￥{{tools.toFix(currProductSpecValue.consumer_price)}}</text>
+	  		<image src="/static/xiaofeiquan.png" style="width: 128rpx;height: 38rpx;margin-left: -8rpx;"></image>
+	      </view>
+	      <view class="view-tab-food-choices-cell-info-price-flag-bg">
+	        <label class="view-tab-food-choices-cell-info-price active-color">
+	          {{currProductSpecValue.amount_desc}}{{tools.toFix(currProductSpecValue.selling_price)}}
+	        </label>
+	        <label wx:if="{{withdrawalSetting.h_price_switch == 'ON' && food.h_price * 1 != food.selling_price * 1}}" class="view-tab-food-choices-cell-info-price" style="color: rgba(218, 0, 0, 1);">
+	          <image src="/images/icon_h_price.png" class="hprice-image"></image>
+			  {{currProductSpecValue.amount_desc}}{{currProductSpecValue.h_price}}
+	        </label>
+	      </view>
+	    </view>
+	  </view>
+   <!-- <view class="view-food-specifications-banner-bg">
+      <swiper class="swiper-food-specifications-banner" indicator-dots="true" indicator-color="rgba(255, 255, 255, 1)" indicator-active-color="rgba(252, 106, 50, 1)" autoplay="true">
+        <swiper-item wx:for="{{foodDetail.img_array}}" data-id="{{index}}" wx:key="index">
+          <van-image fit="cover" lazy-load custom-class="image-food-specifications-banner" src="{{item}}" />
+        </swiper-item>
+      </swiper>
+    </view> -->
+	<view class="view-food-specifications-number-add-bg row-center-between mt15">
+	  <view class="c3">数量</view>
+	  <view class="view-food-specifications-number-bg">
+	    <view catchtap="clickFoodCountReduce" style="height: 100rpx;width: 80rpx;">
+	      <image class="image-food-specifications-number-reduce" src="/static/jian.png"></image>
+	    </view>
+	    <label class="label-food-specifications-number">{{foodCount}}</label>
+	    <view catchtap="clickFoodCountIncrease" style="height: 100rpx;width: 80rpx;">
+	      <image class="image-food-specifications-number-increase" src="/static/jia.png"></image>
+	    </view>
+	  </view>
+	</view>
+	<view class="mt15 c3 pl30 mb5">规格</view>
+    <view class="view-food-specifications-type-bg">
+      <view class="view-tab-food-specifications-type" wx:for="{{productSpecValueArray}}" data-index="{{index}}" wx:key="index" catchtap="onClickSpecValueSelect">
+        <view class="{{item.product_spec_value_n == currProductSpecValue.product_spec_value_n ? 'view-tab-food-specifications-type-cell-select  select-bg': 'view-tab-food-specifications-type-cell no-select-bg'}}">
+          <label class="{{item.product_spec_value_n == currProductSpecValue.product_spec_value_n ? 'label-tab-food-specifications-type-select': 'label-tab-food-specifications-type'}}">
+            {{item.spec_value_name}}{{item.amount_desc}}{{item.raise_price}}
+			<!-- {{item.raise_price=='0'?'':'(+'+item.amount_desc+item.raise_price+')'}} -->
+          </label>
+        </view>
+      </view>
+    </view>
+	<!-- <view class="view-food-specifications-price-bg row-center">
+	  <label class="label-food-specifications-price active-color">
+	    {{currProductSpecValue.selling_price}}{{currProductSpecValue.amount_desc}}
+	  </label>
+	  <label wx:if="{{withdrawalSetting.h_price_switch == 'ON' && foodDetail.h_price * 1 != currProductSpecValue.selling_price * 1}}" class="label-food-specifications-price" style="color: rgba(218, 0, 0, 1);">
+	    <image src="/images/icon_h_price.png" class="hprice-image"></image>
+	    <text>{{currProductSpecValue.h_price}}{{currProductSpecValue.amount_desc}}</text>
+	  </label>
+	  <view class="image-tab-food-choices-cell-info-flag row-center">
+	    <van-icon name="label-o" color="{{color}}" />
+	    <label class="label-tab-food-specifications-flag" wx:for="{{foodDetail.label_array}}" data-id="{{index}}" wx:key="index">{{item}}</label>
+	  </view>
+	</view>
+	
+	<view class="view-food-specifications-remark-bg">
+	  <view class="view-food-specifications-remark-tip background-color"></view>
+	  <view class="view-food-specifications-remark-content">{{foodDetail.desc_info}}</view>
+	</view> -->
+	<view class="p3">
+		<view class="button-food-specifications-add background-color" data-id="{{foodDetail.food_n}}" bindtap="addFoodToCartFun">加入购物车</view>
+	</view>
+  </view>
+</van-popup>
+
+<scroll-view scroll-y style="height: {{scrollHeight}}rpx;" bindscroll="_pageScroll">
+  <!--头部信息-->
+  <view class="head-view">
+    <!-- <swiper autoplay indicator-dots circular  style="height: 320rpx;">
+      <swiper-item wx:for="{{bannerList}}" wx:key="*this">
+        <view class="swiper_img">
+          <image mode="widthFix" src="{{item}}" style="height: 320rpx;" ></image>
+        </view>
+      </swiper-item>
+    </swiper> -->
+	<swiper autoplay indicator-dots circular style="height: 280rpx;" indicator-active-color="#FFF" indicator-color="rgba(255, 255, 255, .5)">
+	       <swiper-item wx:for="{{bannerList}}" wx:key="*this">
+	           <view>
+	               <image style="width: 690rpx; border-radius: 16rpx;height: 280rpx;" src="{{item}}"></image>
+	           </view>
+	       </swiper-item>
+	   </swiper>
+  </view>
+  <view class="row-center-between tab-view {{tabStickyFixed?'tab-background':''}}" id="tabId">
+    <view class="tab-item-view row-flex-start">
+      <view class="active-color tab-ordering-view">
+        <label class="tab-ordering-bottom-view">选餐</label>
+      </view>
+    </view>
+    <view class="row-center" style="font-weight: bold;" wx:if="{{consoleType == 'CONSUMER' || consoleType == 'BEFORE'}}">
+      <view class="store-name row-center">
+        <view class="text-overflow">{{storeInfo.name}}</view>
+      </view>
+      <image class="icon-image margin-right-10" src="/images/table-1.png"></image>
+      <text>桌台号：</text>
+      <view class="active-color">{{menuConsole.table_n}}</view>
+    </view>
+  </view>
+  <!-- 菜单商品 -->
+  <view class="food-cooices-bg-view">
+    <view class="food-choices-left">
+      <scroll-view scroll-y="{{true}}" style="height: {{scrollHeight - 80}}rpx" scroll-into-view="{{toMenuView}}">
+        <block wx:for="{{menuArray}}" wx:key="index" data-id="{{index}}">
+          <block wx:if="{{item.menu_catalog_n == curr_menu_n?'select':''}}">
+            <view class="view-menu-tab-cell select" data-id="{{item.menu_catalog_n}}" id="{{'inToMenuView_' + item.menu_catalog_n}}">
+              <label class=" label-menu-title-select">{{item.name}}</label>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="view-menu-tab-cell" data-id="{{item.menu_catalog_n}}" bindtap="onClickMenuSelect" id="{{'inToMenuView_' + item.menu_catalog_n}}">
+              <label class="view-menu-tab-cell">{{item.name}}</label>
+            </view>
+          </block>
+        </block>
+      </scroll-view>
+    </view>
+    <!-- scroll-y="{{tabStickyFixed}}" -->
+    <view class="food-choices-right">
+      <scroll-view scroll-y="{{true}}" style="height: {{scrollHeight - 80}}rpx" scroll-with-animation="true" scroll-into-view="{{toView}}" bindscroll="_onScroll">
+        <view class="view-tab-food-choices" wx:for="{{menuProArray}}" wx:for-index="m_index" wx:key="m_index" id="{{'inToView' + item.menu_catalog_n}}">
+          <view class="menu-name-view margin-top-20">{{item.menu_catalog_name}}</view>
+          <block wx:for="{{item.records}}" wx:for-item="pitem" wx:for-index="p_index" wx:key="p_index">
+            <food-card bind:_clickFood="onClickFoodSelect" data-item="{{pitem}}" withdrawalSetting="{{withdrawalSetting}}" food="{{pitem}}" />
+          </block>
+        </view>
+        <van-empty wx:if="{{menuProArray.length <= 0}}" description="菜品加载中" />
+        <view class="view-tab-footer"></view>
+      </scroll-view>
+    </view>
+  </view>
+  <view id="last-view"></view>
+</scroll-view>
+
+
+
+<!-- 就餐人数选择 -->
+<view class="drawer_screen" data-statu="close" wx:if="{{is_show_chose_people}}"></view>
+<view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{is_show_chose_people}}" bindtap="chosePeople">
+  <view class="drawer_content">
+    <view>
+      <view class="comfirm">确定</view>
+      <view class="pick-title">就餐人数</view>
+    </view>
+    <picker-view indicator-style="height: 50rpx;" style="width: 100%; height: 550rpx;" bindchange="bindPickerChange">
+      <picker-view-column>
+        <view wx:for="{{numberArray}}" wx:key="index" class="item-list" data-number="{{item.name}}">{{item.name}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>
+
+<!-- 底部菜单 -->
+<view class="row-center-between bootom-btn-view">
+	<view  bindtap="clickPackage" class="row-flex-start"  wx:if="{{consoleType=='CONSUMER' || consoleType=='BEFORE'}}"
+	style="width: 560rpx; height: 100%; background-color: #3A3A3A;border-top-left-radius: 50rpx;border-bottom-left-radius: 50rpx;">
+			<block  wx:if="{{cartFoodArray.length <= 0}}">
+				<!-- 未选择 -->
+				<view class="f-c-c">
+					<image src="/static/Group620.png" style="width: 90rpx;height: 90rpx;margin: 8rpx 0 8rpx 30rpx;"></image>
+				</view>
+				<view class="cf flex items-center ml20">
+					<text>合计：</text>
+					<text class="f30">￥</text>
+					<text class="f40">0</text>
+				</view>
+			</block>
+			<block wx:else>
+				<!-- 已选择 -->
+				<view class="f-c-c p-rela">
+					<!-- <van-icon color="#222" size="68" info="{{packageData.cart_food_count}}" style="position: absolute;right: 14rpx;top: 26rpx;"/> -->
+					<view 
+					class="f-c cf"
+					style="border-radius: 50%;height: 32rpx;width: 32rpx;position: absolute;right: -4rpx;top: 10rpx;font-size: 20rpx;background-color: #FF3B30;">
+						{{packageData.cart_food_count}}
+					</view>
+					<image src="/static/Group621.png" style="width: 90rpx;height: 90rpx;margin: 8rpx 0 8rpx 30rpx;"></image>
+				</view>
+				<view class="ml20  f-y-c">
+					<view>
+						<view class="cf f-y-c">
+							<text>预计金额：</text>
+							<text class="f30">￥</text>
+							<text class="f30">{{packageData.price}}</text> <!-- selling_price -->
+							<text class="f22 ml20" style="color: #FFC74D;" catchtap="lookInfo">优惠明细</text>
+							<image src="/static/Group.png" style="width: 24rpx;height: 24rpx;"></image>
+						</view>
+						<view class="cf93 f22">
+							总优惠 ￥{{packageData.amount_discount}}
+						</view>
+					</view>
+				</view>
+			</block>
+			<!-- <view class="cart-icon-view column-center cf" bindtap="clickPackage">
+			  <van-icon name="cart-o" color="#222" size="38rpx" info="{{packageData.cart_food_count}}" />
+			  <text style="margin-top: 5rpx;">购物车</text>
+			</view>
+			<view class="price-view">
+			  <text class="selling-price-text" space="ensp">￥{{packageData.selling_price}}</text>
+			</view> -->
+	</view>
+	<!--堂食点餐  wx:if="{{cartFoodArray.length <= 0}}"-->
+	<view wx:if="{{consoleType=='CONSUMER' || consoleType=='BEFORE'}}" 
+	style="background:{{cartFoodArray.length <= 0 ? '#C2C2C2' : '#FE2546'}}"
+	class="orders-btn-view f-c-c" bindtap="{{foodCartShow?'onClickSubmitMenu':'clickPackage'}}">
+			去结算
+	</view>		
+</view>	
+<!--购物车弹窗-->
+<foodCartCom foodCartShow="{{foodCartShow}}" cart_food_array="{{cartFoodArray}}" bind:clickfoodCartShow="closefoodCartShow" bind:onClickReduce="onClickReduce" bind:onClickIncrease="onClickIncrease"
+ bind:ClickClearCar="onClickClearCar"></foodCartCom>
+<!-- 优惠明细弹窗 -->
+<van-popup show="{{ youhuiShow }}" position="bottom" close-on-click-overlay bind:close="lookInfo"
+  custom-style="padding-bottom: 100rpx;" round closeable z-index="99" overlay-style="background-color: rgba(64, 68, 71, 0.5);">
+  <view class="p4 f30" style="height: 450rpx;">
+	  <view class="f30 c3" style="margin: 0rpx 0 30rpx 0;">共优惠</view>
+	  <view class="f-x-bt mb20"><text>商品金额</text><text class="c3 wei">￥{{packageData.total_price}}</text></view>
+	  <view class="f-x-bt mb20"><text>消费券</text><text class="c3 wei cf93">-￥{{packageData.consumer_price}}</text></view>
+	  <view class="f-x-bt mb20 border-bottom-2-e pb30"><text>消费券折扣</text><text class="c3 wei cf93">-￥{{packageData.amount_discount}}</text></view>
+	  <view class="f-x-bt mb20 mt20"><text>共减</text><text class="c3 wei cf93">-￥{{tools.toFix(totalMinus)}}</text></view>
+  </view>
+</van-popup>
+<van-dialog id="van-dialog" />
+
+<van-dialog use-slot title="确认提交{{cartFoodArray.length}}个菜品" show="{{ consumerDialogShow }}" show-cancel-button bind:confirm="_clickConfirm" bind:cancel="_clickClose">
+  <view class="consumer-dialog-view">
+    <van-field value="{{ consumerRemark }}" placeholder="告诉我，您的口味" border="{{ false }}" bind:change="_changeConsumerRemark" type="textarea" clearable label="备注" autosize maxlength="50" />
+  </view>
+</van-dialog>

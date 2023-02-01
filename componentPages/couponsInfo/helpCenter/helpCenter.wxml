@@ -1,0 +1,28 @@
+<view class="p253">
+	<view class="top bs16" style="background-image:url('{{ API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205651SESP' }}');">
+		<view class="flex items-center justify-center" style="padding: 25rpx 40rpx 20rpx 40rpx;">
+			<image src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205557LFEI'}}" style="height: 150rpx; width: 152rpx;" class="bs10"></image>
+			<view class="flex justify-between items-center flex-1 ml20">
+				<view>
+					<view class="flex items-center wei5">
+						<image src="{{sellerInfo.storeLogo}}" style="width: 30rpx; height: 30rpx; margin-right: 8rpx">
+						</image>
+						<text>{{sellerInfo.storeName}}</text>
+					</view>
+					<view class="line-1  wei  c0" style="width: 272rpx; margin: 14rpx 0;">
+						{{sellerInfo.name}}{{sellerInfo.amount}}元代金券
+					</view>
+					<view class="c9 f20">满{{sellerInfo.minAmount}}元可用</view>
+				</view>
+				<view style="height: 100%;" class="flex justify-center items-center">
+					<image src="/static/goUse.png" style="width: 136rpx; height: 50rpx;" catchtap="goUse"
+						data-number="{{ sellerInfo.storeN }}" data-coupontype="{{sellerInfo.couponType}}">
+					</image>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="bf bs16 m1">
+		<van-cell title="{{ item.title }}" is-link wx:for="{{ titleList }}" wx:key="index" data-index="{{index}}" data-data="{{ item }}" bindtap="clickItem"/>
+	</view>
+</view>

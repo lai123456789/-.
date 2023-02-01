@@ -1,0 +1,62 @@
+<!-- 分类导航 -->
+<view class="home_category">
+	<navigator class="cates_item" wx:for="{{catesList}}" wx:key="name"
+		url="/componentPages/category/category?title={{item.name}}&&number={{item.number}}">
+		<image src="{{item.icon}}"></image>
+		<view>{{item.name}}</view>
+	</navigator>
+</view>
+<!-- 新店推荐  只展示有参加代金券活动的前20个商家   不足10个不显示 -->
+<block wx:if="{{newRecommendList.length>10}}">
+	<view class="wei f32 ml30 mb20 mt40">新店推荐</view>
+	<view class="ml30 flex o-x-s mb20">
+		<view bindtap="goInfo" data-number="{{item.number}}" wx:for="{{ newRecommendList }}" wx:for-item="item"
+			wx:key="id" class="mr20 pb20 bf" style="border-radius: 16rpx;">
+			<!-- box-shadow: 0px 0px 16rpx 1rpx rgba(120, 120, 120, 0.21); width: 260rpx;-->
+			<image class='page_image class-image class-image-right'
+				style='height: 245rpx; width: 100%; border-radius: 16rpx;' src='{{item.imageUrl}}'></image>
+			<view>
+				<view class="f28" style="padding: 0 16rpx 0rpx 16rpx;">
+					<view class="pt17 flex items-center">
+						<view style="max-width: 184rpx;" class="line-1">{{item.name}}</view>
+						<image src="/static/jin.png" style="width: 30rpx; height: 30rpx; margin-left: 12rpx;"></image>
+					</view>
+					<view class="f-bt f-y-c pt8">
+						<view class="c9 f20 flex">
+							<view style="max-width: 80rpx; height: 32rpx; overflow: hidden;">{{item.storeTypeName}}
+							</view>
+							<view class="m-lr6"> | </view>
+							<view class="f20 c9">￥{{item.perCost}}/人</view>
+						</view>
+					</view>
+					<view class="flex items-center pt8" wx:if="{{ item.couponType === 2 }}">
+						<image style="width: 32rpx; height: 32rpx;" src="/static/quan.png"></image>
+						<view class="ml5 active_color"><text class="f20">￥</text><text
+								class="f28">{{item.couponBuyAmount}}</text></view>
+						<view class="ml5 f24 c9 t-d-l">{{item.couponAmount}}</view>
+						<view class="ml5 f24 c6">代金券</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view style="width: 15rpx;"></view>
+	</view>
+</block>
+<!-- 商户展示 -->
+<view class="card {{isFixedTop?'fixed':''}}" style="top: 0" id="navbar2">
+	<my_dropdown id="my_dropdown" selectionList="{{selectionList}}" foodItem="{{foodItem}}" foodList="{{foodList}}"
+		bindshowmasklayer="showMaskLayer" bindgetdistancechange="_getDistance" bindgetpercost="_getPerCost"
+		bindgetsortdata="_getsortdata" bindgetfooddata="_getFoodData" fixedHeight='{{fixedHeight}}' bindtap="scrollTo">
+	</my_dropdown>
+</view>
+<!-- <view class="card" wx:if="{{isFixedTop}}"></view> -->
+<view class="page_1">
+	<waterfallFlow id="waterfallFlow" leftData="{{leftArr}}" rightData="{{rightArr}}" middleGap="{{ middleGap }}"
+		bind:clickDom='test' longitude="{{longitude}}">
+	</waterfallFlow>
+	<view class="f-c" hidden="{{loading}}">正在加载中...</view>
+	<van-empty wx:if="{{leftArr.length==0&&loading==true}}" description="空空如也~" />
+
+</view>
+<view class="zzc" hidden="{{zzc_hidden}}" bindtap="closeDropdown">
+</view>

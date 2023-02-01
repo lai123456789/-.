@@ -1,0 +1,92 @@
+<view>
+	<view class="bf p3 mb10">
+		<view style="height: 166rpx; width: 100%;" class="flex items-center">
+			<image src="{{ dataInfo.image }}" style="height: 184rpx; width: 184rpx;"></image>
+			<view class="flex justify-between p-rela flex-1 ml20">
+				<view class="flex-1">
+					<view class="flex items-center wei5">
+						<image src="{{dataInfo.storeLogo}}" style="width: 30rpx; height: 30rpx; margin-right: 8rpx">
+						</image>
+						<text>{{dataInfo.storeName}}</text>
+					</view>
+					<view class="line-1  wei  c0" style="margin: 8rpx 0;">
+						{{dataInfo.name}}{{dataInfo.amount}}元代金券
+					</view>
+					<view class="c9 f20">满{{dataInfo.minAmount}}元可用</view>
+					<view class="wei f36 cf93 t-r">￥{{dataInfo.buyAmount}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="bf p3 mb10">
+		<view class="f32 wei c3 mb30">退款方式</view>
+		<view class="f26 c3 mb10">原路退回（退还至支付账户）</view>
+		<view class="f20 c9">需扣除{{service_charge || ''}}%(￥{{fee_amount || ''}}元)运营费用，异常用户将影响平台个人信用度评分，且有可能影响部分商品购买</view>
+	</view>
+	<view class="bf p3 mb10">
+		<view class="f32 wei c3 mb30">退款数量</view>
+		<view class="f26 c3 mb10">{{dataInfo.endTime}}到期</view>
+		<view class="t-r">
+			<view class="mb10" style="padding-right: 90rpx;">
+				<text class="f26 c3">可退</text>
+				<!-- 先写死1张 -->
+				<text class="f26 cf93">1</text>
+				<text class="f26 c3">张</text>
+			</view>
+			<view class="flex items-center justify-end">
+				<view class="m-lr8">退</view>
+				<view class="flex justify-between">
+					<image src="/static/jian.png" style="width: 50rpx; height: 50rpx; margin-right: 8rpx;"
+						bindtap="jian">
+					</image>
+					<input value="{{num}}" style="width: 86rpx; font-size: 36rpx;" type="number"
+						class="f-g-1 f36 t-c c3" bindinput="minput" />
+					<image src="/static/jia.png" style="width: 50rpx; height: 50rpx; margin-left: 8rpx;" bindtap="add">
+					</image>
+				</view>
+				<view class="m-lr8">张</view>
+			</view>
+		</view>
+	</view>
+	<view class="bf mb10" style="height: 400rpx;">
+		<view class="f32 wei c3 mb30" style="padding: 30rpx 0 0 30rpx;">选择退款类型</view>
+		<view>
+			<van-cell is-link bindtap="selectCard" data-index="0">
+				<view slot="title" class="flex items-center">
+					<image src="/static/shangjiayuanyin.png" style="width: 48rpx; height: 48rpx;"></image>
+					<text class="m-lr8">{{ businessReason }}</text>
+				</view>
+			</van-cell>
+			<van-cell is-link bindtap="selectCard" data-index="1">
+				<view slot="title" class="flex items-center">
+					<image src="/static/gerenyuanyin.png" style="width: 48rpx; height: 48rpx;"></image>
+					<text class="m-lr8">{{ personalReasons }}</text>
+				</view>
+			</van-cell>
+		</view>
+	</view>
+	<view class="p253">
+		<!-- foot-fixed-area -->
+		<view class="justify-between flex items-center">
+			<view>
+				<text class="f26 c3 m-lr8">退还</text>
+				<text class="f48 cf93">{{refund_amount}}</text>
+			</view>
+			<image class="{{refund_amount == '0.00' ? 'bggray' : ''}}" src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205946PXSG'}}" style="width: 384rpx; height: 94rpx;" bindtap="goRefund"></image>
+		</view>
+	</view>
+</view>
+<van-action-sheet show="{{ show }}" title="选择退款原因" bind:close="onClose" close-on-click-overlay="{{false}}">
+	<van-radio-group value="{{ radio }}">
+		<view style="padding: 30rpx 60rpx; margin-bottom: 50rpx;">
+			<view class="flex justify-between items-center mb20" wx:for="{{resultList}}"
+				wx:key="index"  bindtap="onChangeRadio" data-index="{{index}}" data-name="{{item.name}}">
+				<view class="c6 f28"  style="width: 500rpx;">{{ item.name }}</view>
+				<van-radio icon-size="42rpx" shape="square" name="{{ index }}" checked-color="#3D3F69"></van-radio>
+			</view>
+		</view>
+	</van-radio-group>
+	<view class="t-c mb20">
+		<image src="{{API_ROOT+'/1/accessory/redirect?accessory_no=XL20220707205930NJMJ'}}" style="width: 384rpx; height: 94rpx;" bindtap="quedingTui"></image>
+	</view>
+</van-action-sheet>

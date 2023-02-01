@@ -1,0 +1,68 @@
+<view style="background-color: #fff;">
+	<Tabs mode="widthFix" Tabs="{{Tabs}}" bindTabsChange="handleTabsChange" attribute="{{ attribute }}"></Tabs>
+	<view class="expenseBill_title f-s-c">
+		<view>
+			<picker mode="date" fields="month" value="{{currentDate}}" start="2021-01-01" end="{{maxDate}}"
+				bindchange="onConfirm">
+				<view style="display: flex;align-items: center;">
+					<view class="f36 c0 wei5"> {{currentDate}}</view>
+					<image style="height:25rpx;width:25rpx;margin-left:6rpx;" mode="widthFix"
+						src="/static/xiangxia.png"></image>
+				</view>
+			</picker>
+		</view>
+		<view class="c9 f28">
+			{{Tabs[0].isActive?"收入":"消费"}} ￥{{amount_sum}}
+		</view>
+	</view>
+	<view wx:if="{{Tabs[0].isActive}}">
+		<view class="expenseBill_list f-s-c" wx:for="{{expenseBillData}}" wx:key="flow_n">
+			<view class="c3 f28">
+				<view>订单编号：{{item.flow_n}}</view>
+				<view>{{item.store_name}}</view>
+				<view class="f24 c9">{{item.update_time}}</view>
+			</view>
+			<view style="display: flex;flex-direction: column;  align-items: flex-end;">
+				<view class="active_color f36">+{{item.amount}}</view>
+				<view class="f28 c9">余额：{{item.currency}}</view>
+			</view>
+		</view>
+	</view>
+	<view wx:if="{{Tabs[1].isActive}}">
+		<!-- <view class="expenseBill_title f-s-c">
+            <view>
+                <picker mode="date" fields="month" value="{{currentDate}}" start="2021-01-01" end="{{maxDate}}" bindchange="onConfirm">
+                    <view style="display: flex;align-items: center;">
+                        <view class="f36 c0 wei5"> {{currentDate}}</view>
+                        <image style="height:25rpx;width:25rpx;margin-left:6rpx;" mode="widthFix" src="/static/xiangxia.png"></image>
+                    </view>
+                </picker>
+            </view>
+            <view class="c9 f28">
+                消费 ￥60.51
+            </view>
+        </view> -->
+		<view class="expenseBill_list f-s-c" wx:for="{{expenseBillData}}" wx:key="flow_n">
+			<view class="c3 f28">
+				<view>订单编号：{{item.flow_n}}</view>
+				<view>{{item.store_name}}</view>
+				<view class="f24 c9">{{item.update_time}}</view>
+			</view>
+			<view style="display: flex;flex-direction: column;  align-items: flex-end;">
+				<view class="f36" style="color:#00B578 ">-{{item.amount}}</view>
+				<view class="f28 c9">余额：{{item.currency}}</view>
+			</view>
+		</view>
+		<!-- <view class="expenseBill_list f-s-c">
+            <view class="c3 f28">
+                <view>订单编号：20220223185909778699</view>
+                <view>深圳市海底捞</view>
+                <view class="f24 c9">3月1日22:33</view>
+            </view>
+            <view style="display: flex;flex-direction: column;  align-items: flex-end;">
+                <view class="f36" style="color:#00B578 ">-20.17</view>
+                <view class="f28 c9">余额：69.60</view>
+            </view>
+        </view> -->
+	</view>
+</view>
